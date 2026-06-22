@@ -1,0 +1,57 @@
+name: KAYLA Scheduler
+
+on:
+  schedule:
+    - cron: "0 13 * * *"
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "Dias hacia adelante para filtrar (default: 2)"
+        required: false
+        default: "2"
+        type: string
+      dry_run:
+        description: "No envia mensajes, solo los imprime en consola"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: scheduler
+  cancel-in-progress: false
+
+jobs:
+  run-scheduler:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependencias
+        run: pip install -r backend/requirements.txt
+
+      - name: Restaurar credenciales de Google
+        run: |
+          echo "${{ secrets.GOOGLE_SHEETS_CREDENTIALS_B64 }}" | base64 -d > credentials.json
+          test -s credentials.json
+
+      - name: Ejecutar scheduler
+        env:
+          GOOGLE_SHEETS_CREDENTIALS_PATH: credentials.json
+          GOOGLE_SHEETS_SPREADSHEET_ID: ${{ secrets.GOOGLE_SHEETS_SPREADSHEET_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID_MEDICO: ${{ secrets.TELEGRAM_CHAT_ID_MEDICO }}
+        run: |
+          python backend/main.py \
+            --days ${{ inputs.days || '2' }} \
+            ${{ inputs.dry_run == true && '--dry-run' || '' }}

@@ -1,0 +1,38 @@
+name: KAYLA CI
+
+on:
+  push:
+    branches: [main, "feature/**"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt ruff
+
+      - name: Lint (ruff)
+        run: ruff check --select F,E9 backend/ frontend/
+
+      - name: Chequeo de sintaxis
+        run: python -m py_compile backend/*.py frontend/*.py
+
+      - name: Tests unitarios
+        run: pytest backend/test_reminder_service.py -v
