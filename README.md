@@ -213,13 +213,13 @@ El scheduler reconstruye `credentials.json` desde el secret en base64 en cada ej
 
 ## Despliegue
 
-| Componente | Plataforma | Estado |
-|------------|-----------|--------|
-| Repositorio | GitHub | Activo |
+| Componente | Plataforma | URL / Estado |
+|------------|-----------|--------------|
+| Repositorio | GitHub | https://github.com/aaccasanih-wq/KAYLA |
 | Scheduler de recordatorios | GitHub Actions | Activo (cron diario 8 a.m. PET) |
 | CI (lint + tests) | GitHub Actions | Activo |
+| Landing page | GitHub Pages | https://aaccasanih-wq.github.io/KAYLA/ |
 | Dashboard | Streamlit Community Cloud | Por desplegar |
-| Landing page | GitHub Pages | Por desplegar |
 | Video demo | YouTube/Loom | Por grabar |
 
 ---
