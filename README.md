@@ -15,6 +15,7 @@ KAYLA es un sistema que lee la base de datos de pacientes desde Google Sheets, i
 - [Estructura del repositorio](#estructura-del-repositorio)
 - [Cómo ejecutar localmente](#cómo-ejecutar-localmente)
 - [Variables de entorno](#variables-de-entorno)
+- [Automatización con GitHub Actions](#automatización-con-github-actions)
 - [Despliegue](#despliegue)
 - [Modelo de negocio](#modelo-de-negocio)
 - [Roadmap](#roadmap)
@@ -172,11 +173,51 @@ Ver `.env.example` para la lista completa. **Nunca subir `.env` ni `credentials.
 
 ---
 
+## Automatización con GitHub Actions
+
+El repositorio incluye dos workflows en `.github/workflows/`:
+
+### Scheduler de recordatorios (`scheduler.yml`)
+
+Ejecuta el orquestador (`backend/main.py`) todos los días a las **8:00 a.m. (hora de Perú, UTC-5)** — equivalente a `13:00 UTC` en el cron. Lee los pacientes de Google Sheets, filtra los que tienen recojo/control en los próximos 2 días y envía los recordatorios por Telegram al médico a cargo.
+
+También se puede disparar manualmente desde la pestaña **Actions → KAYLA Scheduler → Run workflow**, con dos parámetros opcionales:
+
+- `days`: ventana de días hacia adelante (default `2`).
+- `dry_run`: si está activo, no envía mensajes a Telegram; solo los imprime en el log (útil para validar).
+
+### CI (`ci.yml`)
+
+Se ejecuta en cada `push` a `main` y a branches `feature/**`, y en cada `pull_request` hacia `main`. Corre:
+
+1. **Lint** con `ruff` (reglas `F,E9`: imports no usados, nombres no definidos, errores de sintaxis).
+2. **Chequeo de sintaxis** con `python -m py_compile` sobre `backend/` y `frontend/`.
+3. **Tests unitarios** con `pytest` sobre `backend/test_reminder_service.py` (11 tests del filtrado por fechas y generación de recordatorios).
+
+Los scripts `backend/test_connection.py` y `backend/test_telegram.py` son pruebas manuales que requieren credenciales reales, por eso no se ejecutan en CI.
+
+### Secrets a configurar
+
+En **Settings → Secrets and variables → Actions** del repo, agregar:
+
+| Secret | Descripción | Cómo obtenerlo |
+|--------|-------------|----------------|
+| `GOOGLE_SHEETS_CREDENTIALS_B64` | JSON de la Service Account de Google codificado en **base64** | `base64 -i credentials.json -o creds.b64` (macOS) o `base64 credentials.json > creds.b64` (Linux); copiar el contenido |
+| `GOOGLE_SHEETS_SPREADSHEET_ID` | ID del Google Sheet de pacientes | Extraído de la URL del Sheet |
+| `TELEGRAM_BOT_TOKEN` | Token del bot de Telegram | Desde `@BotFather` |
+| `TELEGRAM_CHAT_ID_MEDICO` | Chat ID de Telegram del médico/técnico | Desde `@userinfobot` o el JSON de `getUpdates` |
+
+El scheduler reconstruye `credentials.json` desde el secret en base64 en cada ejecución, por lo que el archivo de credenciales **nunca** se sube al repositorio.
+
+---
+
 ## Despliegue
 
 | Componente | Plataforma | Estado |
 |------------|-----------|--------|
 | Repositorio | GitHub | Activo |
+| Scheduler de recordatorios | GitHub Actions | Activo (cron diario 8 a.m. PET) |
+| CI (lint + tests) | GitHub Actions | Activo |
 | Dashboard | Streamlit Community Cloud | Por desplegar |
 | Landing page | GitHub Pages | Por desplegar |
 | Video demo | YouTube/Loom | Por grabar |
