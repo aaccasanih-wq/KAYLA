@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KAYLA — Recordatorios de medicamentos para postas de salud</title>
+  <meta name="description" content="KAYLA automatiza los recordatorios de medicamentos y controles médicos para pacientes crónicos de postas de salud del Perú vía Telegram, usando Google Sheets como base de datos." />
+  <meta property="og:title" content="KAYLA — Recordatorios de medicamentos para postas de salud" />
+  <meta property="og:description" content="Sistema automático de recordatorios vía Telegram para pacientes crónicos en postas del MINSA. Usa Google Sheets + GitHub Actions." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d9488'/%3E%3Ctext x='16' y='22' font-size='16' font-family='Arial' font-weight='800' fill='white' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="./" class="brand" aria-label="KAYLA inicio">
+      <span class="brand-mark">K</span>
+      <span>KAYLA</span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#problema">Problema</a>
+      <a href="#solucion">Solución</a>
+      <a href="#arquitectura">Arquitectura</a>
+      <a href="pricing.html">Precios</a>
+      <a href="https://github.com/aaccasanih-wq/KAYLA" target="_blank" rel="noopener">Repositorio</a>
+      <a href="https://kayla-demo.streamlit.app" target="_blank" rel="noopener" class="nav-cta">Ver demo</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="container hero-inner">
+    <span class="eyebrow">Salud pública · Perú</span>
+    <h1>Recordatorios automáticos de medicamentos para postas de salud</h1>
+    <p class="lead">
+      KAYLA lee la base de datos de pacientes desde Google Sheets, identifica quién tiene
+      recojo de medicamentos o control médico próximo, y envía recordatorios por Telegram
+      al médico o técnico a cargo. Sin instalar nada, sin costo.
+    </p>
+    <div class="hero-actions">
+      <a href="https://kayla-demo.streamlit.app" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+        Ver demo del dashboard
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      </a>
+      <a href="https://github.com/aaccasanih-wq/KAYLA" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">
+        Ver código en GitHub
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-value">40%</div>
+        <div class="stat-label">de pacientes crónicos no recoge sus medicamentos</div>
+      </div>
+      <div>
+        <div class="stat-value">~80</div>
+        <div class="stat-label">llamadas manuales que hace una posta al mes</div>
+      </div>
+      <div>
+        <div class="stat-value">S/0</div>
+        <div class="stat-label">costo de infraestructura para empezar</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="problema" class="section section-soft">
+  <div class="container">
+    <span class="eyebrow" style="display:block; text-align:center;">El problema</span>
+    <h2 class="section-title">Las postas pierden horas llamando a mano</h2>
+    <p class="section-subtitle">
+      Técnicos, médicos y enfermeras de postas de primer nivel del MINSA en Perú gestionan
+      pacientes crónicos con Excel y llamadas manuales. Si no cumplen las métricas de la
+      Diris/Diresa, la posta pierde recursos y el personal recibe sanciones.
+    </p>
+    <div class="grid grid-3">
+      <div class="card">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+        </div>
+        <h3>40% abandona</h3>
+        <p>Los pacientes hipertensos y diabéticos no recogen sus medicamentos ni asisten a controles mensuales.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Horas perdidas</h3>
+        <p>El personal de salud pierde horas llamando manualmente a unos 80 pacientes al mes, sin seguimiento ni métricas.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+        </div>
+        <h3>Recursos en riesgo</h3>
+        <p>Si no se cumplen las métricas de control de enfermedades crónicas, la posta pierde recursos o el personal recibe sanciones.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="solucion" class="section">
+  <div class="container">
+    <span class="eyebrow" style="display:block; text-align:center;">La solución</span>
+    <h2 class="section-title">Funciona con lo que las postas ya usan</h2>
+    <p class="section-subtitle">
+      No es un problema de falta de tecnología en salud: es un problema de herramientas que
+      no llegan al primer nivel. Las postas no tienen presupuesto para software de gestión,
+      pero sí tienen Google Sheets y Telegram. KAYLA se monta sobre eso.
+    </p>
+    <div class="steps">
+      <div class="step">
+        <h3>El médico registra</h3>
+        <p>Registra pacientes en un Google Form (o edita directo el Google Sheet) con diagnóstico, fechas y datos de contacto.</p>
+      </div>
+      <div class="step">
+        <h3>KAYLA filtra</h3>
+        <p>Cada mañana, GitHub Actions revisa quién tiene recojo o control en los próximos 2 días y agrupa por médico a cargo.</p>
+      </div>
+      <div class="step">
+        <h3>Telegram avisa</h3>
+        <p>El médico o técnico recibe un mensaje con los datos del paciente: nombre, diagnóstico, fecha, celular y posta.</p>
+      </div>
+      <div class="step">
+        <h3>El médico confirma</h3>
+        <p>Contacta al paciente por llamada o WhatsApp personal, y ve el estado de todos en el dashboard de Streamlit.</p>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:36px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+      <span><strong>Insight no obvio:</strong> los sistemas HIS del MINSA no llegan a las postas pequeñas. KAYLA no compite con ellos: cubre el primer nivel que ellos ignoran, con herramientas que el personal ya conoce.</span>
+    </div>
+  </div>
+</section>
+
+<section id="arquitectura" class="section">
+  <div class="container">
+    <span class="eyebrow" style="display:block; text-align:center;">Arquitectura</span>
+    <h2 class="section-title">Cómo fluyen los datos</h2>
+    <p class="section-subtitle">
+      Desde el Google Form que llena el médico hasta el mensaje de Telegram que recibe cada
+      mañana, pasando por el script Python que corre GitHub Actions.
+    </p>
+    <pre class="architecture-diagram">┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
+│  Google Form    │────▶│  Google Sheets   │────▶│  Script Python  │
+│  (médicos       │     │  (base de datos  │     │  (GitHub Actions│
+│   llenan)       │     │   de pacientes)  │     │   cada mañana)  │
+└─────────────────┘     └──────────────────┘     └────────┬────────┘
+                                                          │
+                                ┌─────────────────────────┘
+                                ▼
+                      ┌─────────────────┐
+                      │  Telegram Bot   │────▶ Médico/Técnico recibe
+                      │  (mensaje al    │       "Juan Pérez (HTA) debe
+                      │   médico)       │        recoger medicamento
+                      │                 │        el 25/06. Cel: 999888777"
+                      └─────────────────┘
+                                │
+                                ▼
+                      ┌─────────────────┐     ┌─────────────────┐
+                      │  Streamlit      │────▶│  GitHub Pages   │
+                      │  (dashboard     │     │  (landing page  │
+                      │   web)          │     │   con pricing)  │
+                      └─────────────────┘     └─────────────────┘</pre>
+  </div>
+</section>
+
+<section class="section section-soft">
+  <div class="container">
+    <span class="eyebrow" style="display:block; text-align:center;">Precios</span>
+    <h2 class="section-title">Empezar es gratis</h2>
+    <p class="section-subtitle">
+      Freemium B2B ligero: no vendemos al Estado directamente, sino a profesionales de salud
+      que luego presionan hacia arriba. Costo variable por usuario cercano a S/0.
+    </p>
+    <div class="pricing-grid">
+      <div class="plan">
+        <h3>Gratis</h3>
+        <div class="plan-tagline">Para una posta que recién empieza</div>
+        <div class="plan-price"><span class="amount">S/0</span><span class="period">/mes</span></div>
+        <ul class="plan-features">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>1 posta, hasta 50 pacientes</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Recordatorios por Telegram</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Conexión con Google Sheets</li>
+        </ul>
+        <a href="https://kayla-demo.streamlit.app" target="_blank" rel="noopener" class="btn btn-ghost">Empezar gratis</a>
+      </div>
+
+      <div class="plan plan-featured">
+        <span class="plan-badge">Más popular</span>
+        <h3>Pro</h3>
+        <div class="plan-tagline">Para postas que quieren métricas</div>
+        <div class="plan-price"><span class="amount">S/49</span><span class="period">/mes</span></div>
+        <ul class="plan-features">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Hasta 3 postas, 500 pacientes</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Dashboard con métricas</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Reporte mensual para Diris</li>
+        </ul>
+        <a href="pricing.html" class="btn btn-primary">Elegir Pro</a>
+      </div>
+
+      <div class="plan">
+        <h3>Micro-red</h3>
+        <div class="plan-tagline">Para una red de postas</div>
+        <div class="plan-price"><span class="amount">S/199</span><span class="period">/mes</span></div>
+        <ul class="plan-features">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>10 postas, pacientes ilimitados</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Admin centralizado</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Onboarding personalizado</li>
+        </ul>
+        <a href="pricing.html" class="btn btn-ghost">Hablar con nosotros</a>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:28px; margin-bottom:0;">
+      <a href="pricing.html">Ver detalle de planes y comparativa →</a>
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <span class="eyebrow" style="display:block; text-align:center;">Roadmap</span>
+    <h2 class="section-title">Hacia dónde va KAYLA</h2>
+    <div class="grid grid-3">
+      <div class="card">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>3 meses</h3>
+        <p>3 postas activas, sistema estable con Telegram, primeros usuarios pagando en el plan Pro.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
+        </div>
+        <h3>6 meses</h3>
+        <p>10 postas, integración con WhatsApp Business API y dashboard con predicción de abandono.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12a15.3 15.3 0 0 0 4-10 15.3 15.3 0 0 0 4 10 15.3 15.3 0 0 0-4 10 15.3 15.3 0 0 0-4-10z"/></svg>
+        </div>
+        <h3>12 meses</h3>
+        <p>50 postas (1 micro-red), primer convenio institucional con ONG o municipalidad, integración con HIS del MINSA.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="cta-band">
+      <h2>¿Gestionas una posta con pacientes crónicos?</h2>
+      <p>Pruébalo gratis con tus primeros 50 pacientes. Solo necesitas un Google Sheet y un bot de Telegram. Sin instalaciones, sin costo.</p>
+      <a href="https://kayla-demo.streamlit.app" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Probar el demo</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <a href="./" class="brand" style="text-decoration:none;">
+          <span class="brand-mark">K</span>
+          <span>KAYLA</span>
+        </a>
+        <p>Recordatorios automáticos de medicamentos y controles médicos para pacientes crónicos de postas de salud del Perú.</p>
+      </div>
+      <div>
+        <h4>Producto</h4>
+        <ul>
+          <li><a href="#problema">Problema</a></li>
+          <li><a href="#solucion">Solución</a></li>
+          <li><a href="pricing.html">Precios</a></li>
+          <li><a href="https://kayla-demo.streamlit.app" target="_blank" rel="noopener">Dashboard demo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Repositorio</h4>
+        <ul>
+          <li><a href="https://github.com/aaccasanih-wq/KAYLA" target="_blank" rel="noopener">Código en GitHub</a></li>
+          <li><a href="https://github.com/aaccasanih-wq/KAYLA/blob/main/README.md" target="_blank" rel="noopener">Documentación</a></li>
+          <li><a href="https://github.com/aaccasanih-wq/KAYLA/blob/main/.env.example" target="_blank" rel="noopener">Variables de entorno</a></li>
+          <li><a href="https://github.com/aaccasanih-wq/KAYLA/actions" target="_blank" rel="noopener">GitHub Actions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 KAYLA · Axel Aaron Ccasani Huachua</span>
+      <span>Hecho en Perú · Para postas del MINSA</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
