@@ -3,7 +3,7 @@ from __future__ import annotations
 from datetime import date, datetime, timedelta
 from typing import Iterable
 
-from models import Paciente, Recordatorio, normalize_date
+from models import Paciente, Recordatorio
 
 
 def parse_date(value: str) -> date | None:
