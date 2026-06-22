@@ -1,0 +1,43 @@
+# Entorno
+.env
+venv/
+env/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Credenciales
+credentials.json
+service_account.json
+*.key
+*.pem
+*.p12
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Datos sensibles
+data/pacientes_reales.csv
+data/*.xlsx
+data/*.xls
+
+# Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Build / cache
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
