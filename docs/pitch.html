@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAYLA — Pitch Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #0d9488;
+    --teal-dark: #0b7a6f;
+    --teal-light: #5ec9c0;
+    --teal-soft: #d6f5f0;
+    --accent: #e8743b;
+    --accent-dark: #cf5f2a;
+    --bg: #ffffff;
+    --bg-soft: #f6f9f8;
+    --bg-dark: #0f2a26;
+    --text: #0f2a26;
+    --text-soft: #4b6360;
+    --muted: #7a8a87;
+    --border: #d9e4e1;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--text);
+    background: #e8e8e8;
+  }
+
+  .slide {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg);
+    margin: 20px auto;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .slide-dark { background: var(--bg-dark); color: #fff; }
+  .slide-soft { background: var(--bg-soft); }
+
+  .slide-content {
+    flex: 1;
+    padding: 60px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .slide-header {
+    padding: 28px 80px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .slide-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .brand-mark {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--teal), var(--teal-light));
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.85rem;
+  }
+
+  .slide-dark .brand-mark { background: linear-gradient(135deg, var(--teal-light), var(--teal)); }
+
+  .slide-number {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .slide-dark .slide-number { color: rgba(255,255,255,0.5); }
+
+  .slide-footer {
+    padding: 0 80px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .slide-dark .slide-footer { color: rgba(255,255,255,0.4); }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    background: var(--teal-soft);
+    padding: 5px 14px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+  }
+
+  .slide-dark .eyebrow {
+    color: var(--teal-light);
+    background: rgba(94, 201, 192, 0.15);
+  }
+
+  h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+
+  h2 {
+    font-size: 2.6rem;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+  }
+
+  .slide-dark h1, .slide-dark h2 { color: #fff; }
+
+  h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  p { line-height: 1.6; font-size: 1.15rem; }
+  .slide-dark p { color: rgba(255,255,255,0.88); }
+
+  .lead { font-size: 1.35rem; line-height: 1.5; color: var(--text-soft); }
+  .slide-dark .lead { color: rgba(255,255,255,0.85); }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+  .card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+  }
+
+  .slide-soft .card { box-shadow: 0 2px 12px rgba(15,42,38,0.06); }
+
+  .card h3 { color: var(--teal-dark); margin-bottom: 8px; }
+  .card p { font-size: 1rem; color: var(--text-soft); margin: 0; }
+
+  .stat {
+    text-align: center;
+    padding: 20px;
+    background: rgba(13,148,136,0.08);
+    border-radius: 14px;
+  }
+
+  .stat-value {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--teal);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .stat-label {
+    font-size: 0.95rem;
+    color: var(--text-soft);
+  }
+
+  .stat-dark .stat-value { color: var(--teal-light); }
+  .stat-dark .stat-label { color: rgba(255,255,255,0.75); }
+
+  .pill {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: var(--teal);
+    color: #fff;
+    margin-right: 8px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  th {
+    background: var(--bg-soft);
+    font-weight: 700;
+    color: var(--text);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .col-highlight {
+    background: rgba(13,148,136,0.08);
+    font-weight: 600;
+    color: var(--teal-dark);
+  }
+
+  .check-list {
+    list-style: none;
+    display: grid;
+    gap: 14px;
+  }
+
+  .check-list li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 1.1rem;
+    color: var(--text-soft);
+  }
+
+  .check-list li::before {
+    content: "✓";
+    color: var(--teal);
+    font-weight: 800;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .quote {
+    font-size: 1.5rem;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--text);
+    border-left: 4px solid var(--accent);
+    padding-left: 28px;
+    margin: 20px 0;
+  }
+
+  .demo-urls {
+    background: var(--bg-dark);
+    border-radius: 14px;
+    padding: 24px 32px;
+    color: #fff;
+  }
+
+  .demo-urls a {
+    color: var(--teal-light);
+    font-family: monospace;
+    font-size: 1rem;
+  }
+
+  .insight-box {
+    background: rgba(232,116,59,0.1);
+    border: 1.5px solid var(--accent);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-top: 20px;
+  }
+
+  .insight-box h3 {
+    color: var(--accent-dark);
+    margin-bottom: 8px;
+  }
+
+  .insight-box p { color: var(--text); margin: 0; font-size: 1.1rem; }
+
+  .arch-img {
+    background: var(--bg-dark);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .arch-img img, .arch-img svg { width: 100%; height: auto; border-radius: 8px; }
+
+  .pricing-mini {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .plan-mini {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .plan-mini.featured {
+    border: 2px solid var(--teal);
+    box-shadow: 0 4px 20px rgba(13,148,136,0.15);
+  }
+
+  .plan-mini h3 { font-size: 1.1rem; color: var(--teal-dark); }
+  .plan-mini .price { font-size: 1.8rem; font-weight: 800; margin: 8px 0; }
+  .plan-mini .price-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 12px; }
+  .plan-mini ul { list-style: none; text-align: left; font-size: 0.9rem; color: var(--text-soft); }
+  .plan-mini ul li { padding: 4px 0; }
+
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-left: 24px;
+  }
+
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--teal);
+  }
+
+  .timeline-item::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 20px;
+    width: 2px;
+    height: calc(100% - 20px);
+    background: var(--border);
+  }
+
+  .timeline-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--teal);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+
+  .timeline-item h3 { font-size: 1.1rem; margin-bottom: 6px; }
+  .timeline-item p { font-size: 0.95rem; color: var(--text-soft); margin: 0; }
+
+  .risk-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .risk-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    border-top: 4px solid var(--accent);
+  }
+
+  .risk-card .severity {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .severity-high { background: #fee2e2; color: #b91c1c; }
+  .severity-med { background: #fef3c7; color: #b45309; }
+
+  .risk-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+  .risk-card p { font-size: 0.92rem; color: var(--text-soft); margin: 0; }
+
+  .ask-box {
+    background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+    color: #fff;
+    border-radius: 20px;
+    padding: 48px;
+    text-align: center;
+  }
+
+  .ask-box h2 { color: #fff; font-size: 2.2rem; margin-bottom: 16px; }
+  .ask-box .amount { font-size: 4rem; font-weight: 900; margin: 16px 0; }
+  .ask-box p { font-size: 1.2rem; color: rgba(255,255,255,0.92); max-width: 700px; margin: 0 auto; }
+
+  @media print {
+    @page {
+      size: 1280px 720px;
+      margin: 0;
+    }
+    body { background: #fff; }
+    .slide {
+      margin: 0;
+      box-shadow: none;
+      page-break-after: always;
+      break-after: page;
+    }
+  }
+
+  @media screen and (max-width: 1340px) {
+    body { background: #e8e8e8; }
+    .slide { transform-origin: top center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Slide 1: Title -->
+<section class="slide slide-dark">
+  <div class="slide-header">
+    <div class="slide-brand"><span class="brand-mark">K</span><span>KAYLA</span></div>
+    <div class="slide-number">1 / 14</div>
+  </div>
+  <div class="slide-content" style="justify-content:center; align-items:flex-start;">
+    <span class="eyebrow">Salud pública · Perú · 2026</span>
+    <h1 style="font-size:3.8rem; max-width:1000px;">Recordatorios automáticos de medicamentos para postas de salud</h1>
+    <p class="lead" style="font-size:1.5rem; max-width:820px; margin-top:12px;">
+      Automatizamos los recordatorios de medicamentos y controles médicos para pacientes
+      crónicos vía Telegram, reduciendo la pérdida de pacientes en las micro-redes de
+      salud pública del Perú.
+    </p>
+    <div style="display:flex; gap:16px; margin-top:36px;">
+      <span class="pill">MVP funcional</span>
+      <span class="pill" style="background:var(--accent);">Solo Founder</span>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>kayla-demo.streamlit.app</span>
+    <span>Axel Aaron Ccasani Huachua</span>
+  </div>
+</section>
+
+<!-- Slide 2: Founder -->
+<section class="slide">
+  <div class="slide-header">
+    <div class="slide-brand"><span class="brand-mark">K</span><span>KAYLA</span></div>
+    <div class="slide-number">2 / 14</div>
+  </div>
+  <div class="slide-content">
+    <span class="eyebrow">Founder</span>
+    <h2>Solo Founder con conexión directa al sector</h2>
+    <div class="grid-2" style="margin-top:24px;">
+      <div>
+        <h3 style="font-size:1.5rem; margin-bottom:14px;">Axel Aaron Ccasani Huachua</h3>
+        <p style="margin-bottom:16px;">
+          Estudiante de Data Science en la Universidad del Pacífico. Construye KAYLA como
+          solo founder usando agentes de IA como co-founder técnico.
+        </p>
+        <p style="color:var(--text-soft);">
+          <strong>Founder-market fit:</strong> hermano es técnico de posta del MINSA en Lima.
+          Acceso directo al problema, a los usuarios y a las métricas reales de la Diris.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Cómo cubro los roles con IA</h3>
+        <ul class="check-list" style="margin-top:14px;">
+          <li><strong>Ingeniería:</strong> Claude Code como co-founder técnico</li>
+          <li><strong>Producto:</strong> validación con hermano + médicos reales</li>
+          <li><strong>Ops:</strong> GitHub Actions y Streamlit Cloud automatizan</li>
+          <li><strong>Datos:</strong> Google Sheets + Python + Streamlit</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>Founder-market fit: acceso a postas del MINSA</span>
+    <span>KAYLA · 2026</span>
+  </div>
+</section>
+
+<!-- Slide 3: Problema -->
+<section class="slide slide-soft">
+  <div class="slide-header">
+    <div class="slide-brand"><span class="brand-mark">K</span><span>KAYLA</span></div>
+    <div class="slide-number">3 / 14</div>
+  </div>
+  <div class="slide-content">
+    <span class="eyebrow">El problema</span>
+    <h2>Las postas pierden 40% de pacientes crónicos</h2>
+    <p class="lead" style="max-width:900px; margin-bottom:36px;">
+      Técnicos, médicos y enfermeras de postas de primer nivel del MINSA gestionan
+      pacientes crónicos con Excel y llamadas manuales. Si no cumplen las métricas de la
+      Diris/Diresa, la posta pierde recursos y el personal recibe sanciones.
+    </p>
+    <div class="grid-3">
+      <div class="stat">
+        <div class="stat-value">40%</div>
+        <div class="stat-label">de pacientes crónicos no recoge medicamentos ni asiste a controles</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">~80</div>
+        <div class="stat-label">llamadas manuales que hace una posta al mes, sin seguimiento</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">0</div>
+        <div class="stat-label">sistemas de gestión que llegan al primer nivel de atención</div>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:36px;">
+      "Pierdo horas llamando a pacientes que nunca vienen. Si no cumplo las métricas, me descuentan."
+    </div>
+    <p style="color:var(--muted); font-size:0.95rem; margin-top:8px;">
+      — Técnico de posta, Lima (validación con hermano del founder)
+    </p>
+  </div>
+  <div class="slide-footer">
+    <span>El dolor es real y medible</span>
+    <span>KAYLA · 2026</span>
+  </div>
+</section>
+
+<!-- Slide 4: Solución & Insight -->
+<section class="slide">
+  <div class="slide-header">
+    <div class="slide-brand"><span class="brand-mark">K</span><span>KAYLA</span></div>
+    <div class="slide-number">4 / 14</div>
+  </div>
+  <div class="slide-content">
+    <span class="eyebrow">Solución & insight</span>
+    <h2>Funciona con lo que las postas ya usan</h2>
+    <div class="grid-2" style="margin-top:20px;">
+      <div>
+        <h3 style="margin-bottom:16px;">Qué construimos</h3>
+        <ul class="check-list">
+          <li>Lee la base de pacientes desde <strong>Google Sheets</strong></li>
+          <li>Identifica quién tiene recojo/control en los próximos 2 días</li>
+          <li>Envía recordatorios por <strong>Telegram</strong> al médico a cargo</li>
+          <li>Dashboard web (<strong>Streamlit</strong>) con estado de todos los pacientes</li>
+          <li>Scheduler automático con <strong>GitHub Actions</strong> cada mañana</li>
+        </ul>
+      </div>
+      <div>
+        <div class="insight-box">
+          <h3>Insight no obvio</h3>
+          <p>
+            No es un problema de "falta de tecnología en salud". Hay muchos sistemas caros.
+            Es un problema de <strong>herramientas que no llegan al primer nivel</strong>.
+            Las postas no tienen presupuesto, pero sí tienen Google Sheets y Telegram.
+            El sistema debe funcionar con lo que ya usan.
+          </p>
+        </div>
+        <div style="margin-top:20px; padding:20px; background:var(--bg-soft); border-radius:12px;">
+          <p style="font-size:1rem; margin:0;">
+            <strong>No compite con los HIS del MINSA:</strong> cubre el primer nivel que
+            ellos ignoran, con herramientas que el personal ya conoce.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>Cero curva de aprendizaje · cero costo de infraestructura</span>
+    <span>KAYLA · 2026</span>
+  </div>
+</section>
+
+<!-- Slide 5: Why now -->
+<section class="slide slide-dark">
+  <div class="slide-header">
+    <div class="slide-brand"><span class="brand-mark">K</span><span>KAYLA</span></div>
+    <div class="slide-number">5 / 14</div>
+  </div>
+  <div class="slide-content">
+    <span class="eyebrow">Why now?</span>
+    <h2>Por qué esto es posible hoy y no hace 3 años</h2>
+    <div class="grid-2" style="margin-top:28px;">
+      <div class="card" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.12);">
+        <h3 style="color:var(--teal-light);">IA y agentes de código</h3>
+        <p style="color:rgba(255,255,255,0.8);">LLMs y agentes como Claude Code permiten construir sistemas completos en días, no meses. Un solo founder puede hacer el trabajo de un equipo.</p>
+      </div>
+      <div class="card" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.12);">
+        <h3 style="color:var(--teal-light);">Telegram Bot API madura y gratis</h3>
+        <p style="color:rgba(255,255,255,0.8);">Mensajería robusta sin costo por mensaje. Hace 3 años requería integración técnica compleja; hoy es un token y 20 líneas de Python.</p>
+      </div>
+      <div class="card" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.12);">
+        <h3 style="color:var(--teal-light);">Google Sheets es universal</h3>
+        <p style="color:rgba(255,255,255,0.8);">Las postas ya usan Excel/Sheets. La API de Google permite leer y escribir sin instalar nada. Cero curva de aprendizaje.</p>
+      </div>
+      <div class="card" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.12);">
+        <h3 style="color:var(--teal-light);">MINSA intensificó métricas</h3>
+        <p style="color:rgba(255,255,255,0.8);">Post-pandemia, el MINSA exige mayor control de enfermedades crónicas. Las postas que no cumplen pierden recursos. La urgencia aumentó.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>La confluencia de IA + APIs gratis + presión regulatoria</span>
+    <span>KAYLA · 2026</span>
+  </div>
+</section>
+
+<!-- Slide 6: Mercado -->
+<section class="slide slide-soft">
+  <div class="slide-header">
+    <div class="slide-brand"><span class="brand-mark">K</span><span>KAYLA</span></div>
+    <div class="slide-number">6 / 14</div>
+  </div>
+  <div class="slide-content">
+    <span class="eyebrow">Mercado</span>
+    <h2>TAM / SAM / SOM</h2>
+    <div class="grid-3" style="margin-top:32px;">
+      <div class="card" style="border-top:4px solid var(--teal-light);">
+        <h3 style="color:var(--teal);">TAM</h3>
+        <div style="font-size:2.4rem; font-weight:800; color:var(--text); margin:8px 0;">~12,000</div>
+        <p>postas de primer nivel en Perú (MINSA). Potencial total del mercado.</p>
+        <p style="font-size:0.85rem; color:var(--muted); margin-top:8px;">Fuente: MINSA</p>
+      </div>
+      <div class="card" style="border-top:4px solid var(--teal);">
+        <h3 style="color:var(--teal);">SAM</h3>
+        <div style="font-size:2.4rem; font-weight:800; color:var(--text); margin:8px 0;">~3,000</div>
+        <p>postas en Lima y ciudades grandes con acceso a internet estable.</p>
+        <p style="font-size:0.85rem; color:var(--muted); margin-top:8px;">Estimación conservadora</p>
+      </div>
+      <div class="card" style="border-top:4px solid var(--accent); box-shadow:0 4px 20px rgba(232,116,59,0.15);">
+        <h3 style="color:var(--accent-dark);">SOM</h3>
+        <div style="font-size:2.4rem; font-weight:800; color:var(--text); margin:8px 0;">50</div>
+        <p>postas en 12 meses. Meta realista como solo founder.</p>
+        <p style="font-size:0.85rem; color:var(--muted); margin-top:8px;">1 micro-red Diris</p>
+      </div>
+    </div>
+    <div style="margin-top:32px; padding:24px; background:#fff; border-radius:12px; border:1px solid var(--border);">
+      <p style="margin:0; font-size:1.05rem;">
+        <strong>Ingreso potencial (SOM × Pro):</strong> 50 postas × S/49/mes = <strong>S/2,450 MRR</strong>
+        → <strong>S/29,400 ARR</strong>. Escalable a S/199/mes con plan Micro-red.
+      </p>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>Mercado grande, segmento enfocado, meta alcanzable</span>
+    <span>KAYLA · 2026</span>
+  </div>
+</section>
+
+<!-- Slide 7: Competencia y moat -->
+<section class="slide">
+  <div class="slide-header">
+    <div class="slide-brand"><span class="brand-mark">K</span><span>KAYLA</span></div>
+    <div class="slide-number">7 / 14</div>
+  </div>
+  <div class="slide-content">
+    <span class="eyebrow">Competencia y moat</span>
+    <h2>No compite con sistemas caros: cubre el primer nivel</h2>
+    <table style="margin-top:20px;">
+      <thead>
+        <tr>
+          <th>Alternativa</th>
+          <th>Pros</th>
+          <th>Contras vs. KAYLA</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Excel + llamadas manuales</td>
+          <td>Gratis, ya lo conocen</td>
+          <td>Pierde 40% de pacientes, consume horas, sin métricas</td>
+        </tr>
+        <tr>
+          <td>Sistemas HIS del MINSA</td>
+          <td>Oficial, integrado</td>
+          <td>No llegan a postas pequeñas, interfaz compleja, requiere capacitación</td>
+        </tr>
+        <tr>
+          <td>SMS masivo (Infobip, Twilio)</td>
+          <td>Escalable</td>
+          <td>Costo por mensaje, requiere integración, no hay seguimiento</td>
+        </tr>
+        <tr>
+          <td>Apps de citas (Doctoralia)</td>
+          <td>Para clínicas privadas</td>
+          <td>Costo alto, no adaptado a salud pública, no maneja recojo de medicamentos</td>
+        </tr>
+        <tr>
+          <td class="col-highlight">KAYLA</td>
+          <td class="col-highlight">Gratis, Sheets + Telegram, dashboard + scheduler</td>
+          <td class="col-highlight">—</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="grid-3" style="margin-top:24px;">
+      <div class="card" style="text-align:center; padding:18px;">
+        <h3 style="font-size:1rem;">Datos propios</h3>
+        <p style="font-size:0.9rem;">Historial de asistencia por paciente, posta y enfermedad → predicción de abandono</p>
+      </div>
+      <div class="card" style="text-align:center; padding:18px;">
+        <h3 style="font-size:1rem;">Relaciones</h3>
+        <p style="font-size:0.9rem;">Founder conectado al sector. Red de contactos con técnicos y médicos del MINSA</p>
+      </div>
+      <div class="card" style="text-align:center; padding:18px;">
+        <h3 style="font-size:1rem;">Workflow integrado</h3>
+        <p style="font-size:0.9rem;">No es "envía un mensaje": leer Excel, identificar riesgo, notificar, confirmar, reportar</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>Moat: datos + relaciones + workflow</span>
+    <span>KAYLA · 2026</span>
+  </div>
+</section>
+
+<!-- Slide 8: Producto y arquitectura -->
+<section class="slide slide-soft">
+  <div class="slide-header">
+    <div class="slide-brand"><span class="brand-mark">K</span><span>KAYLA</span></div>
+    <div class="slide-number">8 / 14</div>
+  </div>
+  <div class="slide-content" style="padding:48px 80px;">
+    <span class="eyebrow">Producto — demo y arquitectura</span>
+    <h2 style="font-size:2rem;">Del Google Form al mensaje de Telegram</h2>
+    <div class="arch-img" style="margin-top:16px;">
+      <img src="architecture.svg" alt="Diagrama de arquitectura de KAYLA" style="max-height:340px; width:auto;">
+    </div>
+    <div class="grid-3" style="margin-top:20px;">
+      <div class="demo-urls" style="padding:16px 20px;">
+        <p style="font-size:0.85rem; margin-bottom:6px; color:rgba(255,255,255,0.7);">Landing + pricing</p>
+        <p style="font-size:0.95rem; margin:0; font-family:monospace; color:var(--teal-light);">aaccasanih-wq.github.io/KAYLA</p>
+      </div>
+      <div class="demo-urls" style="padding:16px 20px;">
+        <p style="font-size:0.85rem; margin-bottom:6px; color:rgba(255,255,255,0.7);">Dashboard Streamlit</p>
+        <p style="font-size:0.95rem; margin:0; font-family:monospace; color:var(--teal-light);">kayla-demo.streamlit.app</p>
+      </div>
+      <div class="demo-urls" style="padding:16px 20px;">
+        <p style="font-size:0.85rem; margin-bottom:6px; color:rgba(255,255,255,0.7);">Repositorio</p>
+        <p style="font-size:0.95rem; margin:0; font-family:monospace; color:var(--teal-light);">github.com/aaccasanih-wq/KAYLA</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>Stack: Python, gspread, Telegram API, Streamlit, GitHub Actions</span>
+    <span>KAYLA · 2026</span>
+  </div>
+</section>
+
+<!-- Slide 9: Modelo de negocio -->
+<section class="slide">
+  <div class="slide-header">
+    <div class="slide-brand"><span class="brand-mark">K</span><span>KAYLA</span></div>
+    <div class="slide-number">9 / 14</div>
+  </div>
+  <div class="slide-content">
+    <span class="eyebrow">Modelo de negocio y pricing</span>
+    <h2>Freemium B2B ligero</h2>
+    <p class="lead" style="max-width:880px; margin-bottom:32px;">
+      No vendemos al Estado directamente. Vendemos a profesionales de salud que luego
+      presionan hacia arriba. Costo variable por usuario: ~S/0.
+    </p>
+    <div class="pricing-mini">
+      <div class="plan-mini">
+        <h3>Gratis</h3>
+        <div class="price">S/0</div>
+        <div class="price-sub">/mes</div>
+        <ul>
+          <li>1 posta</li>
+          <li>50 pacientes</li>
+          <li>Recordatorios Telegram</li>
+          <li>Google Sheets</li>
+        </ul>
+      </div>
+      <div class="plan-mini featured">
+        <h3>Pro</h3>
+        <div class="price">S/49</div>
+        <div class="price-sub">/mes</div>
+        <ul>
+          <li>3 postas</li>
+          <li>500 pacientes</li>
+          <li>Dashboard métricas</li>
+          <li>Reporte Diris</li>
+        </ul>
+      </div>
+      <div class="plan-mini">
+        <h3>Micro-red</h3>
+        <div class="price">S/199</div>
+        <div class="price-sub">/mes</div>
+        <ul>
+          <li>10 postas</li>
+          <li>Pacientes ilimitados</li>
+          <li>Admin centralizado</li>
+          <li>Onboarding</li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:28px; display:flex; gap:24px;">
+      <div class="stat" style="text-align:left; padding:16px 24px;">
+        <div style="font-size:1.6rem; font-weight:800; color:var(--teal);">~100%</div>
+        <div class="stat-label">margen de contribución</div>
+      </div>
+      <div class="stat" style="text-align:left; padding:16px 24px;">
+        <div style="font-size:1.6rem; font-weight:800; color:var(--teal);">S/0</div>
+        <div class="stat-label">costo variable por usuario</div>
+      </div>
+      <div class="stat" style="text-align:left; padding:16px 24px;">
+        <div style="font-size:1.6rem; font-weight:800; color:var(--teal);">S/29k</div>
+        <div class="stat-label">ARR potencial con 50 postas Pro</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>Telegram, Sheets y GitHub Actions son gratuitos</span>
+    <span>KAYLA · 2026</span>
+  </div>
+</section>
+
+<!-- Slide 10: GTM -->
+<section class="slide slide-dark">
+  <div class="slide-header">
+    <div class="slide-brand"><span class="brand-mark">K</span><span>KAYLA</span></div>
+    <div class="slide-number">10 / 14</div>
+  </div>
+  <div class="slide-content">
+    <span class="eyebrow">Go-to-market</span>
+    <h2>De 10 postas a 1,000</h2>
+    <div style="margin-top:36px;">
+      <div style="display:grid; grid-template-columns:200px 1fr; gap:32px; margin-bottom:28px; align-items:start;">
+        <div>
+          <div style="font-size:2.8rem; font-weight:800; color:var(--teal-light);">10</div>
+          <div style="color:rgba(255,255,255,0.7); font-size:0.9rem;">Primeros usuarios</div>
+        </div>
+        <div style="padding-top:12px;">
+          <p style="color:rgba(255,255,255,0.9); margin:0;">
+            Founder + hermano contactan colegas de postas en Lima. <strong>Uso gratuito</strong>
+            a cambio de feedback. Validación directa del producto con usuarios reales.
+          </p>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:200px 1fr; gap:32px; margin-bottom:28px; align-items:start; border-top:1px solid rgba(255,255,255,0.12); padding-top:28px;">
+        <div>
+          <div style="font-size:2.8rem; font-weight:800; color:var(--teal-light);">100</div>
+          <div style="color:rgba(255,255,255,0.7); font-size:0.9rem;">Crecimiento orgánico</div>
+        </div>
+        <div style="padding-top:12px;">
+          <p style="color:rgba(255,255,255,0.9); margin:0;">
+            Grupos de Facebook de médicos del MINSA, foros de salud pública, WhatsApp groups
+            de técnicos. <strong>Referrals</strong> de los primeros 10 usuarios.
+          </p>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:200px 1fr; gap:32px; align-items:start; border-top:1px solid rgba(255,255,255,0.12); padding-top:28px;">
+        <div>
+          <div style="font-size:2.8rem; font-weight:800; color:var(--accent);">1,000</div>
+          <div style="color:rgba(255,255,255,0.7); font-size:0.9rem;">Escala institucional</div>
+        </div>
+        <div style="padding-top:12px;">
+          <p style="color:rgba(255,255,255,0.9); margin:0;">
+            Convenio con ONG de salud (ej. Partners In Health Perú) o municipalidad distrital
+            con fondos de innovación. <strong>Primer contrato institucional</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>B2B ligero: profesionales primero, instituciones después</span>
+    <span>KAYLA · 2026</span>
+  </div>
+</section>
+
+<!-- Slide 11: Tracción -->
+<section class="slide slide-soft">
+  <div class="slide-header">
+    <div class="slide-brand"><span class="brand-mark">K</span><span>KAYLA</span></div>
+    <div class="slide-number">11 / 14</div>
+  </div>
+  <div class="slide-content">
+    <span class="eyebrow">Tracción / señales tempranas</span>
+    <h2>Validación con usuarios reales</h2>
+    <div class="grid-3" style="margin-top:32px;">
+      <div class="card" style="text-align:center; border-top:4px solid var(--teal);">
+        <div style="font-size:2.4rem; font-weight:800; color:var(--teal);">1</div>
+        <h3 style="font-size:1rem;">Posta en pilotaje</h3>
+        <p>Hermano del founder. Sistema funcionando con pacientes reales.</p>
+      </div>
+      <div class="card" style="text-align:center; border-top:4px solid var(--teal);">
+        <div style="font-size:2.4rem; font-weight:800; color:var(--teal);">3</div>
+        <h3 style="font-size:1rem;">En lista de espera</h3>
+        <p>Médicos y técnicos esperando prueba del sistema en sus postas.</p>
+      </div>
+      <div class="card" style="text-align:center; border-top:4px solid var(--accent);">
+        <div style="font-size:2.4rem; font-weight:800; color:var(--accent);">5+</div>
+        <h3 style="font-size:1rem;">Entrevistas</h3>
+        <p>Conversaciones documentadas con personal de salud sobre el problema.</p>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:32px;">
+      "Si me llegara un mensaje cada mañana con los pacientes que debo llamar, me ahorraría dos horas."
+    </div>
+    <p style="color:var(--muted); font-size:0.95rem; margin-top:8px;">
+      — Médico de posta, Lima (entrevista de validación, ver docs/research/)
+    </p>
+  </div>
+  <div class="slide-footer">
+    <span>1 posta activa + 3 en espera + 5 entrevistas</span>
+    <span>KAYLA · 2026</span>
+  </div>
+</section>
+
+<!-- Slide 12: Roadmap -->
+<section class="slide">
+  <div class="slide-header">
+    <div class="slide-brand"><span class="brand-mark">K</span><span>KAYLA</span></div>
+    <div class="slide-number">12 / 14</div>
+  </div>
+  <div class="slide-content">
+    <span class="eyebrow">Roadmap</span>
+    <h2>Plan a 3, 6 y 12 meses</h2>
+    <div class="timeline" style="margin-top:36px;">
+      <div class="timeline-item">
+        <div class="timeline-label">3 meses</div>
+        <h3>Product-market fit</h3>
+        <p>3 postas activas, sistema estable con Telegram, primeros usuarios pagando en plan Pro. Validación de willingness to pay.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-label">6 meses</div>
+        <h3>Escalabilidad</h3>
+        <p>10 postas, integración con WhatsApp Business API, dashboard con predicción de abandono usando datos propios.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-label">12 meses</div>
+        <h3>Micro-red</h3>
+        <p>50 postas (1 micro-red), primer convenio institucional con ONG o municipalidad, integración con HIS del MINSA.</p>
+      </div>
+    </div>
+    <div style="margin-top:36px; padding:24px; background:var(--bg-soft); border-radius:14px;">
+      <p style="margin:0; font-size:1.05rem;">
+        <strong>Métrica norte:</strong> postas activas pagando plan Pro. Meta 12 meses:
+        <strong>50 postas × S/49 = S/2,450 MRR</strong>.
+      </p>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>De validación a escala institucional</span>
+    <span>KAYLA · 2026</span>
+  </div>
+</section>
+
+<!-- Slide 13: Riesgos -->
+<section class="slide slide-soft">
+  <div class="slide-header">
+    <div class="slide-brand"><span class="brand-mark">K</span><span>KAYLA</span></div>
+    <div class="slide-number">13 / 14</div>
+  </div>
+  <div class="slide-content">
+    <span class="eyebrow">Riesgos y mitigación</span>
+    <h2>Los tres riesgos más serios</h2>
+    <div class="risk-grid" style="margin-top:32px;">
+      <div class="risk-card">
+        <span class="severity severity-high">Alto</span>
+        <h3>Ciclos lentos de venta al Estado</h3>
+        <p><strong>Mitigación:</strong> no vender al Estado directamente. Vender B2B ligero a profesionales individuales primero. El Estado llega después, empujado por los profesionales.</p>
+      </div>
+      <div class="risk-card">
+        <span class="severity severity-med">Medio</span>
+        <h3>Pacientes sin Telegram/WhatsApp</h3>
+        <p><strong>Mitigación:</strong> notificar al médico por Telegram para que llame manualmente. Generar lista de impresión para pacientes sin contacto digital.</p>
+      </div>
+      <div class="risk-card">
+        <span class="severity severity-med">Medio</span>
+        <h3>Solo founder / capacidad</h3>
+        <p><strong>Mitigación:</strong> agentes de IA (Claude Code) como co-founder técnico. MVP mínimo y enfocado. GitHub Actions y Streamlit Cloud automatizan la operación.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>Cada riesgo tiene mitigación concreta</span>
+    <span>KAYLA · 2026</span>
+  </div>
+</section>
+
+<!-- Slide 14: The ask -->
+<section class="slide slide-dark">
+  <div class="slide-header">
+    <div class="slide-brand"><span class="brand-mark">K</span><span>KAYLA</span></div>
+    <div class="slide-number">14 / 14</div>
+  </div>
+  <div class="slide-content" style="justify-content:center; align-items:center; text-align:center;">
+    <span class="eyebrow">The ask</span>
+    <div class="ask-box" style="max-width:880px;">
+      <h2>Si tuviera 30 segundos con un inversionista</h2>
+      <div class="amount">S/15,000</div>
+      <p>para 3 meses de runway: validar 10 postas pagantes, contratar 1 developer part-time,
+      y conseguir la primera micro-red de la Diris.</p>
+      <p style="margin-top:20px; font-size:1.1rem; color:var(--teal-light); font-weight:600;">
+        Este monto desbloquea product-market fit en salud pública peruana.
+      </p>
+    </div>
+    <div style="margin-top:40px; display:flex; gap:32px;">
+      <div class="stat stat-dark">
+        <div class="stat-value" style="font-size:2rem;">10</div>
+        <div class="stat-label">postas pagantes</div>
+      </div>
+      <div class="stat stat-dark">
+        <div class="stat-value" style="font-size:2rem;">1</div>
+        <div class="stat-label">developer part-time</div>
+      </div>
+      <div class="stat stat-dark">
+        <div class="stat-value" style="font-size:2rem;">1</div>
+        <div class="stat-label">micro-red Diris</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>kayla-demo.streamlit.app · github.com/aaccasanih-wq/KAYLA</span>
+    <span>Gracias</span>
+  </div>
+</section>
+
+</body>
+</html>
