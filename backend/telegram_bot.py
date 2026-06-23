@@ -80,6 +80,19 @@ class TelegramBot:
         response.raise_for_status()
         return response.json()
 
+    def get_updates(self, timeout: int = 0) -> list[dict[str, Any]]:
+        """Obtiene los updates (mensajes) recientes recibidos por el bot.
+
+        Útil para descubrir el chat_id de usuarios que le escribieron al bot.
+        """
+        response = requests.get(
+            f"{self.api_base}/getUpdates",
+            params={"timeout": timeout},
+            timeout=timeout + 5,
+        )
+        response.raise_for_status()
+        return response.json().get("result", [])
+
     def get_chat_info(self, chat_id: str | None = None) -> dict[str, Any]:
         """Obtiene información sobre un chat."""
         target_chat = chat_id or self.default_chat_id

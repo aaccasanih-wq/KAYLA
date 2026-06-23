@@ -1,6 +1,6 @@
-dni,nombres,apellidos,celular,diagnostico,fecha_recojo_medicamento,fecha_proximo_control,posta,medico_a_cargo,correo_medico,estado,observaciones
-12345678,Juan Carlos,Perez Gomez,987654321,HTA,2026-06-24,2026-07-01,Posta San Martin,Luis Quispe,medico1@posta.gob.pe,activo,Paciente regular
-87654321,Maria Elena,Rojas Torres,987123456,DM2,2026-06-25,2026-07-05,Posta San Martin,Luis Quispe,medico1@posta.gob.pe,activo,
-23456789,Carlos Alberto,Mendoza Soto,999887766,HTA,2026-06-26,2026-07-10,Posta Villa El Salvador,Ana Chavez,medico2@posta.gob.pe,activo,Hipertension controlada
-34567890,Ana Lucia,Vargas Huaman,988776655,EPOC,2026-06-27,2026-07-12,Posta Villa El Salvador,Ana Chavez,medico2@posta.gob.pe,activo,Requiere oxigeno en casa
-45678901,Pedro Jose,Lopez Fernandez,977665544,DM2,2026-06-28,2026-07-15,Posta San Martin,Luis Quispe,medico1@posta.gob.pe,activo,
+dni,nombres,apellidos,celular,diagnostico,fecha_recojo_medicamento,fecha_proximo_control,posta,medico_a_cargo,correo_medico,telegram_chat_id,estado,observaciones
+12345678,Juan Carlos,Perez Gomez,987654321,HTA,2026-06-24,2026-07-01,Posta San Martin,Luis Quispe,medico1@posta.gob.pe,,activo,Paciente regular
+87654321,Maria Elena,Rojas Torres,987123456,DM2,2026-06-25,2026-07-05,Posta San Martin,Luis Quispe,medico1@posta.gob.pe,,activo,
+23456789,Carlos Alberto,Mendoza Soto,999887766,HTA,2026-06-26,2026-07-10,Posta Villa El Salvador,Ana Chavez,medico2@posta.gob.pe,,activo,Hipertension controlada
+34567890,Ana Lucia,Vargas Huaman,988776655,EPOC,2026-06-27,2026-07-12,Posta Villa El Salvador,Ana Chavez,medico2@posta.gob.pe,,activo,Requiere oxigeno en casa
+45678901,Pedro Jose,Lopez Fernandez,977665544,DM2,2026-06-28,2026-07-15,Posta San Martin,Luis Quispe,medico1@posta.gob.pe,,activo,

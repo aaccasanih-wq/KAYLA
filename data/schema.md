@@ -20,8 +20,9 @@ Este documento define la estructura de datos de la hoja `Pacientes` del Google S
 | 8 | `posta` | texto | Sí | Nombre o código de la posta de salud. |
 | 9 | `medico_a_cargo` | texto | Sí | Nombre del médico/técnico responsable. |
 | 10 | `correo_medico` | texto | Sí | Correo del médico/técnico (para envío de reportes). |
-| 11 | `estado` | texto | Sí | `activo`, `inactivo`, `fallecido`. Default: `activo`. |
-| 12 | `observaciones` | texto | No | Notas libres (alergias, condiciones especiales, etc.). |
+| 11 | `telegram_chat_id` | texto | No | Chat ID de Telegram del médico (para enviarle sus recordatorios). Si está vacío, se usa `TELEGRAM_CHAT_ID_MEDICO` como fallback. |
+| 12 | `estado` | texto | Sí | `activo`, `inactivo`, `fallecido`. Default: `activo`. |
+| 13 | `observaciones` | texto | No | Notas libres (alergias, condiciones especiales, etc.). |
 
 ### Formato de fechas
 
@@ -75,4 +76,5 @@ Ver `data/sample_pacientes.csv` para un ejemplo con 5 pacientes ficticios (sin d
 
 - El Google Sheet **no debe contener datos sensibles sin consentimiento** (Ley 29733 — Ley de Protección de Datos Personales del Perú).
 - Para el MVP, los pacientes ficticios de ejemplo usan DNIs y celulares inventados.
-- En producción, el acceso al Sheet se comparte solo con el `client_email` de la service account y el personal autorizado.
+- **Acceso al Sheet restringido:** el Sheet se comparte solo con el `client_email` de la service account (Editor) y la propietaria (Editor). Los médicos **no tienen acceso directo** al Sheet — solo pueden agregar pacientes mediante el Google Form vinculado. Ver `docs/sheet_access_control.md`.
+- **Routing por médico:** cada médico recibe sus recordatorios en su propio chat de Telegram (campo `telegram_chat_id`). Si el campo está vacío, se usa `TELEGRAM_CHAT_ID_MEDICO` como fallback. Ver `docs/google_form_setup.md` para el flujo de registro de médicos.

@@ -17,6 +17,7 @@ COLUMNS: list[str] = [
     "posta",
     "medico_a_cargo",
     "correo_medico",
+    "telegram_chat_id",
     "estado",
     "observaciones",
 ]
@@ -41,6 +42,7 @@ class Paciente:
     posta: str
     medico_a_cargo: str
     correo_medico: str
+    telegram_chat_id: str = ""
     estado: str = "activo"
     observaciones: str = ""
 
