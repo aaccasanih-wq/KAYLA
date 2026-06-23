@@ -136,13 +136,18 @@ def main() -> None:
     # --- Tabla de pacientes ---
     st.header("Base de pacientes")
 
-    col_filter1, col_filter2 = st.columns(2)
+    col_filter1, col_filter2, col_filter3 = st.columns(3)
     with col_filter1:
         posta_filter = st.selectbox(
             "Filtrar por posta",
             options=["Todas"] + sorted(df["posta"].dropna().unique().tolist()),
         )
     with col_filter2:
+        medico_filter = st.selectbox(
+            "Filtrar por medico",
+            options=["Todos"] + sorted(df["medico_a_cargo"].dropna().unique().tolist()),
+        )
+    with col_filter3:
         estado_filter = st.selectbox(
             "Filtrar por estado",
             options=["Todos", "activo", "inactivo", "fallecido"],
@@ -151,6 +156,8 @@ def main() -> None:
     df_filtered = df.copy()
     if posta_filter != "Todas":
         df_filtered = df_filtered[df_filtered["posta"] == posta_filter]
+    if medico_filter != "Todos":
+        df_filtered = df_filtered[df_filtered["medico_a_cargo"] == medico_filter]
     if estado_filter != "Todos":
         df_filtered = df_filtered[
             df_filtered["estado"].str.lower() == estado_filter
