@@ -1,11 +1,35 @@
 from __future__ import annotations
 
+import json
+import os
 import sys
 from datetime import date
 from pathlib import Path
 
 import pandas as pd
 import streamlit as st
+
+# Mapear st.secrets (Streamlit Community Cloud) a variables de entorno antes
+# de instanciar SheetsClient, para no acoplar el backend a Streamlit.
+try:
+    if "gcp_service_account" in st.secrets:
+        os.environ["GOOGLE_SHEETS_CREDENTIALS_JSON"] = json.dumps(
+            dict(st.secrets["gcp_service_account"])
+        )
+    elif "GOOGLE_SHEETS_CREDENTIALS_JSON" in st.secrets:
+        os.environ["GOOGLE_SHEETS_CREDENTIALS_JSON"] = st.secrets[
+            "GOOGLE_SHEETS_CREDENTIALS_JSON"
+        ]
+    for _key in (
+        "GOOGLE_SHEETS_SPREADSHEET_ID",
+        "TELEGRAM_BOT_TOKEN",
+        "TELEGRAM_CHAT_ID_MEDICO",
+    ):
+        if _key in st.secrets:
+            os.environ[_key] = str(st.secrets[_key])
+except st.errors.StreamlitAPIException:
+    # No hay secrets.toml (desarrollo local con .env): ignorar silenciosamente.
+    pass
 
 sys.path.insert(0, str(Path(__file__).parent.parent / "backend"))
 
@@ -57,7 +81,10 @@ def main() -> None:
         df = load_patients_df()
     except Exception as e:
         st.error(f"Error al cargar datos desde Google Sheets: {e}")
-        st.info("Verifica las credenciales y el SPREADSHEET_ID en `.env`.")
+        st.info(
+            "Verifica las credenciales y `GOOGLE_SHEETS_SPREADSHEET_ID` en `.env` "
+            "(local) o en **Settings → Secrets** de Streamlit Cloud."
+        )
         return
 
     if df.empty:

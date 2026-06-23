@@ -10,7 +10,7 @@
 
 1. Tener abiertas estas pestañas en el navegador:
    - Landing page: `https://aaccasanih-wq.github.io/KAYLA/`
-   - Dashboard Streamlit: `https://kayla-demo.streamlit.app`
+   - Dashboard Streamlit: `https://kayla2026.streamlit.app`
    - Repositorio GitHub: `https://github.com/aaccasanih-wq/KAYLA`
    - Telegram (mostrar el chat con el bot)
 2. Tener el Google Sheet de pacientes abierto con datos de ejemplo.

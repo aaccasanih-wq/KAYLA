@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import base64
+import json
 import os
 from pathlib import Path
 from typing import Any
@@ -16,8 +18,38 @@ SCOPES = [
 ]
 
 
+def load_credentials_info() -> dict[str, Any] | None:
+    """Carga credenciales de Service Account desde variables de entorno.
+
+    Orden de precedencia:
+      1. ``GOOGLE_SHEETS_CREDENTIALS_JSON``: JSON crudo como string.
+      2. ``GOOGLE_SHEETS_CREDENTIALS_B64``: JSON codificado en base64.
+
+    Retorna ``None`` si ninguna variable está presente (caer atrás al
+    archivo ``credentials.json`` en disco, útil para desarrollo local).
+    """
+    raw_json = os.getenv("GOOGLE_SHEETS_CREDENTIALS_JSON")
+    if raw_json:
+        return json.loads(raw_json)
+
+    b64 = os.getenv("GOOGLE_SHEETS_CREDENTIALS_B64")
+    if b64:
+        return json.loads(base64.b64decode(b64).decode("utf-8"))
+
+    return None
+
+
 class SheetsClient:
-    """Cliente para interactuar con Google Sheets mediante una Service Account."""
+    """Cliente para interactuar con Google Sheets mediante una Service Account.
+
+    Las credenciales se resuelven en este orden:
+      1. Variables de entorno (``GOOGLE_SHEETS_CREDENTIALS_JSON`` o
+         ``GOOGLE_SHEETS_CREDENTIALS_B64``) -- útil para Streamlit Cloud
+         y otros PaaS donde no hay sistema de archivos persistente.
+      2. Archivo en disco (``GOOGLE_SHEETS_CREDENTIALS_PATH`` o
+         ``credentials.json`` por defecto) -- desarrollo local y
+         GitHub Actions (que reconstruye el archivo desde un secret).
+    """
 
     def __init__(
         self,
@@ -37,10 +69,14 @@ class SheetsClient:
                 "Agrega el ID del Google Sheet en .env"
             )
 
-        if not Path(self.credentials_path).exists():
+        self._credentials_info = load_credentials_info()
+
+        if self._credentials_info is None and not Path(self.credentials_path).exists():
             raise FileNotFoundError(
                 f"No se encontró el archivo de credenciales en '{self.credentials_path}'. "
-                "Descarga el JSON desde Google Cloud Console y colócalo en la raíz del proyecto."
+                "Descarga el JSON desde Google Cloud Console y colócalo en la raíz del "
+                "proyecto, o define GOOGLE_SHEETS_CREDENTIALS_JSON / "
+                "GOOGLE_SHEETS_CREDENTIALS_B64 en el entorno."
             )
 
         self._client: gspread.client.Client | None = None
@@ -49,9 +85,14 @@ class SheetsClient:
     @property
     def client(self) -> gspread.client.Client:
         if self._client is None:
-            creds = Credentials.from_service_account_file(
-                self.credentials_path, scopes=SCOPES
-            )
+            if self._credentials_info is not None:
+                creds = Credentials.from_service_account_info(
+                    self._credentials_info, scopes=SCOPES
+                )
+            else:
+                creds = Credentials.from_service_account_file(
+                    self.credentials_path, scopes=SCOPES
+                )
             self._client = gspread.authorize(creds)
         return self._client
 

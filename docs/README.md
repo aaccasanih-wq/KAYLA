@@ -7,15 +7,18 @@ arquitectura, guion del video demo y evidencias de validación.
 
 ### Pitch deck
 
-- **[`pitch.html`](pitch.html)** — Pitch deck en formato Y Combinator (14 slides).
-  Para exportar a PDF: abrir en el navegador → ⌘P → "Guardar como PDF".
-  El archivo resultante es `docs/pitch.pdf`.
+- **[`pitch.pdf`](pitch.pdf)** — Pitch deck en formato Y Combinator (14 slides), listo para entregar.
+- **[`pitch.html`](pitch.html)** — Fuente editable. Para exportar a PDF: abrir en el navegador → ⌘P → "Guardar como PDF".
 
 ### Arquitectura
 
-- **[`architecture.svg`](architecture.svg)** — Diagrama de arquitectura del sistema.
+- **[`architecture.png`](architecture.png)** / **[`architecture.svg`](architecture.svg)** — Diagrama de arquitectura del sistema.
   Muestra el flujo: Google Form → Google Sheets → Script Python (GitHub Actions) →
   Telegram Bot → Médico, con Streamlit y GitHub Pages como derivaciones.
+
+### Capturas de pantalla
+
+- **[`screenshots/`](screenshots/)** — Capturas del dashboard, Telegram, landing y Sheet (ver [`screenshots/README.md`](screenshots/README.md) para la guía de captura).
 
 ### Video demo
 
@@ -36,6 +39,8 @@ Carpeta **[`research/`](research/)** con 5 evidencias de validación:
 
 - [`google_sheets_setup.md`](google_sheets_setup.md) — Cómo configurar Google Sheets y las credenciales
 - [`telegram_bot_setup.md`](telegram_bot_setup.md) — Cómo crear y configurar el bot de Telegram
+- [`google_form_setup.md`](google_form_setup.md) — Cómo vincular el Google Form al Sheet
+- [`sheet_access_control.md`](sheet_access_control.md) — Control de acceso al Sheet por médico
 
 ## Cómo exportar el pitch deck a PDF
 
