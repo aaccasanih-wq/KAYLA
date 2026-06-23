@@ -4,6 +4,12 @@
 
 KAYLA es un sistema que lee la base de datos de pacientes desde Google Sheets, identifica quién tiene fecha de recojo de medicamentos o control médico próximo, y envía recordatorios automáticos por Telegram al médico o técnico a cargo. Incluye un dashboard web (Streamlit) para visualizar el estado de todos los pacientes y recordatorios.
 
+> **Demo en vivo (sin instalar nada):**
+> - Dashboard: https://kayla-demo.streamlit.app
+> - Landing page: https://aaccasanih-wq.github.io/KAYLA/
+> - Repositorio: https://github.com/aaccasanih-wq/KAYLA
+> - Video demo: _pendiente de subir_ (guion en [`docs/video_script.md`](docs/video_script.md))
+
 ---
 
 ## Tabla de contenidos
@@ -19,6 +25,8 @@ KAYLA es un sistema que lee la base de datos de pacientes desde Google Sheets, i
 - [Despliegue](#despliegue)
 - [Modelo de negocio](#modelo-de-negocio)
 - [Roadmap](#roadmap)
+- [Capturas de pantalla](#capturas-de-pantalla)
+- [Video demo](#video-demo)
 - [Documentación y pitch](#documentación-y-pitch)
 - [Autor](#autor)
 - [Licencia](#licencia)
@@ -101,25 +109,34 @@ KAYLA se integra con las herramientas que las postas **ya usan** (Google Sheets 
 KAYLA/
 ├── README.md              # Este archivo
 ├── LICENSE                # MIT
+├── requirements.txt       # Dependencias Python
 ├── .env.example           # Variables de entorno (valores dummy)
 ├── .gitignore
-├── requirements.txt       # Dependencias Python
+├── .streamlit/            # Config del dashboard
+│   ├── config.toml        # Tema y opciones de la app
+│   └── secrets.toml.example  # Plantilla de secrets para Streamlit Cloud
 ├── docs/                  # Pitch deck, diagrama, video, evidencias
 │   ├── README.md          # Índice de documentación
-│   ├── pitch.html         # Pitch deck (14 slides, exportar a PDF)
-│   ├── architecture.svg   # Diagrama de arquitectura
+│   ├── pitch.pdf          # Pitch deck (14 slides, YC)
+│   ├── pitch.html         # Pitch deck editable
+│   ├── architecture.png   # Diagrama de arquitectura (PNG)
+│   ├── architecture.svg   # Diagrama de arquitectura (SVG)
 │   ├── video_script.md    # Guion del video demo
+│   ├── screenshots/       # Capturas de pantalla
 │   └── research/          # 5 evidencias de validación
 ├── frontend/              # Dashboard Streamlit
 │   └── app.py
 ├── backend/               # Lógica de negocio, Sheets, Telegram
-│   ├── main.py
-│   ├── sheets_client.py
-│   ├── telegram_bot.py
+│   ├── main.py            # Orquestador del scheduler
+│   ├── sheets_client.py   # Cliente Google Sheets (env/file creds)
+│   ├── telegram_bot.py    # Cliente Telegram Bot API
 │   ├── reminder_service.py
-│   └── models.py
+│   ├── models.py
+│   └── test_reminder_service.py
+├── tests/                 # Tests E2E y de credenciales
+│   ├── test_e2e_pipeline.py
+│   └── test_sheets_credentials.py
 ├── app/                   # Aplicación principal (orquestador)
-├── tests/                 # Tests básicos
 ├── ai/                    # Prompts, agentes (futuro)
 ├── data/                  # Muestras chicas; datasets grandes en releases
 ├── notebooks/             # Exploración y EDA
@@ -175,10 +192,14 @@ Ver `.env.example` para la lista completa. **Nunca subir `.env` ni `credentials.
 
 | Variable | Descripción |
 |----------|-------------|
-| `GOOGLE_SHEETS_CREDENTIALS_PATH` | Ruta al archivo JSON de credenciales de servicio de Google |
+| `GOOGLE_SHEETS_CREDENTIALS_PATH` | Ruta al archivo JSON de credenciales de servicio de Google (dev local / GitHub Actions) |
+| `GOOGLE_SHEETS_CREDENTIALS_JSON` | JSON de la Service Account como string (Streamlit Cloud / PaaS) |
+| `GOOGLE_SHEETS_CREDENTIALS_B64` | Mismo JSON codificado en base64 (alternativa para PaaS) |
 | `GOOGLE_SHEETS_SPREADSHEET_ID` | ID del Google Sheet con la base de datos de pacientes |
 | `TELEGRAM_BOT_TOKEN` | Token del bot de Telegram (de @BotFather) |
-| `TELEGRAM_CHAT_ID_MEDICO` | Chat ID de Telegram del médico/técnico a notificar |
+| `TELEGRAM_CHAT_ID_MEDICO` | Chat ID de Telegram del médico/técnico a notificar (fallback) |
+
+> Las credenciales se resuelven en orden: `GOOGLE_SHEETS_CREDENTIALS_JSON` → `GOOGLE_SHEETS_CREDENTIALS_B64` → archivo en `GOOGLE_SHEETS_CREDENTIALS_PATH`. En Streamlit Cloud, `frontend/app.py` mapea `st.secrets` a estas variables automáticamente.
 
 ---
 
@@ -201,7 +222,10 @@ Se ejecuta en cada `push` a `main` y a branches `feature/**`, y en cada `pull_re
 
 1. **Lint** con `ruff` (reglas `F,E9`: imports no usados, nombres no definidos, errores de sintaxis).
 2. **Chequeo de sintaxis** con `python -m py_compile` sobre `backend/` y `frontend/`.
-3. **Tests unitarios** con `pytest` sobre `backend/test_reminder_service.py` (11 tests del filtrado por fechas y generación de recordatorios).
+3. **Tests** con `pytest` (24 tests en total):
+   - `backend/test_reminder_service.py` — 11 tests del filtrado por fechas y generación de recordatorios.
+   - `tests/test_e2e_pipeline.py` — 4 tests end-to-end del flujo completo (Sheets → filtro → agrupado → Telegram) con mocks, incluido el *routing* por `chat_id` y el modo *dry-run*.
+   - `tests/test_sheets_credentials.py` — 9 tests de resolución de credenciales (env JSON, base64, archivo) sin tocar la red.
 
 Los scripts `backend/test_connection.py` y `backend/test_telegram.py` son pruebas manuales que requieren credenciales reales, por eso no se ejecutan en CI.
 
@@ -228,8 +252,20 @@ El scheduler reconstruye `credentials.json` desde el secret en base64 en cada ej
 | Scheduler de recordatorios | GitHub Actions | Activo (cron diario 8 a.m. PET) |
 | CI (lint + tests) | GitHub Actions | Activo |
 | Landing page | GitHub Pages | https://aaccasanih-wq.github.io/KAYLA/ |
-| Dashboard | Streamlit Community Cloud | Por desplegar |
-| Video demo | YouTube/Loom | Por grabar |
+| Dashboard | Streamlit Community Cloud | https://kayla-demo.streamlit.app |
+| Video demo | YouTube/Loom | _pendiente de grabar_ |
+
+### Dashboard en Streamlit Community Cloud
+
+El dashboard lee los pacientes desde Google Sheets usando una Service Account. En Streamlit Cloud las credenciales **no** van en un archivo: se configuran como **secrets**.
+
+1. Ir a [share.streamlit.io](https://share.streamlit.io) → **New app** → seleccionar el repo `aaccasanih-wq/KAYLA`, branch `main`, archivo `frontend/app.py`.
+2. En **Settings → Secrets** pegar el contenido de [`.streamlit/secrets.toml.example`](.streamlit/secrets.toml.example) con los valores reales:
+   - `[gcp_service_account]` con el contenido completo de `credentials.json` (la Service Account con acceso al Sheet).
+   - `GOOGLE_SHEETS_SPREADSHEET_ID` con el ID del Sheet de pacientes.
+3. **Save** y **Reboot**. La app queda pública en `https://<app-name>.streamlit.app`.
+
+> El dashboard no envía mensajes de Telegram (solo los muestra); los tokens de Telegram en secrets son opcionales para el dashboard pero se dejan por consistencia.
 
 ---
 
@@ -257,22 +293,37 @@ El scheduler reconstruye `credentials.json` desde el secret en base64 en cada ej
 
 ---
 
+## Capturas de pantalla
+
+Las capturas están en [`docs/screenshots/`](docs/screenshots/):
+
+| Captura | Descripción |
+|---------|-------------|
+| `dashboard.png` | Dashboard de Streamlit: métricas, recordatorios agrupados por médico y base de pacientes. |
+| `telegram.png` | Mensaje de recordatorio recibido por el médico en Telegram (formato Markdown). |
+| `landing.png` | Landing page con hero, problema, solución y pricing. |
+| `sheet.png` | Google Sheet de pacientes con el formulario vinculado. |
+
+> Ver [`docs/screenshots/README.md`](docs/screenshots/README.md) para la guía de captura.
+
+## Video demo
+
+- **Guion:** [`docs/video_script.md`](docs/video_script.md) — 2-3 minutos con timestamps y voz en off.
+- **Video grabado:** _pendiente de subir a YouTube (no listado) o Loom_ (link aquí tras grabar).
+
+---
+
 ## Documentación y pitch
 
 ### Pitch deck
 
-- **[`docs/pitch.html`](docs/pitch.html)** — Pitch deck en formato Y Combinator (14 slides: one-liner, founder, problema, solución, mercado, competencia, producto, modelo de negocio, GTM, tracción, roadmap, riesgos, the ask).
-  - Para exportar a PDF: abrir en el navegador → ⌘P → "Guardar como PDF" → guardar como `docs/pitch.pdf`.
-  - Ver [`docs/README.md`](docs/README.md) para instrucciones detalladas.
+- **[`docs/pitch.pdf`](docs/pitch.pdf)** — Pitch deck en formato Y Combinator (14 slides: one-liner, founder, problema, solución, mercado, competencia, producto, modelo de negocio, GTM, tracción, roadmap, riesgos, the ask).
+- Fuente editable: [`docs/pitch.html`](docs/pitch.html) (abrir en el navegador → ⌘P → "Guardar como PDF").
+- Ver [`docs/README.md`](docs/README.md) para instrucciones detalladas.
 
 ### Diagrama de arquitectura
 
-- **[`docs/architecture.svg`](docs/architecture.svg)** — Diagrama del flujo: Google Form → Google Sheets → Script Python (GitHub Actions) → Telegram Bot → Médico, con Streamlit y GitHub Pages como derivaciones.
-
-### Video demo
-
-- **Guion:** [`docs/video_script.md`](docs/video_script.md) — 2-3 minutos con timestamps y voz en off.
-- **Video grabado:** _pendiente de subir a YouTube/Loom_ (link aquí tras grabar).
+- **[`docs/architecture.png`](docs/architecture.png)** / **[`docs/architecture.svg`](docs/architecture.svg)** — Diagrama del flujo: Google Form → Google Sheets → Script Python (GitHub Actions) → Telegram Bot → Médico, con Streamlit y GitHub Pages como derivaciones.
 
 ### Evidencias de validación
 

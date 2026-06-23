@@ -34,5 +34,5 @@ jobs:
       - name: Chequeo de sintaxis
         run: python -m py_compile backend/*.py frontend/*.py
 
-      - name: Tests unitarios
-        run: pytest backend/test_reminder_service.py -v
+      - name: Tests unitarios y E2E
+        run: pytest backend/test_reminder_service.py tests/ -v
