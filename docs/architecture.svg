@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" font-family="Inter, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0f2a26"/>
+      <stop offset="1" stop-color="#0a1f1c"/>
+    </linearGradient>
+    <linearGradient id="teal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d9488"/>
+      <stop offset="1" stop-color="#0b7a6f"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e8743b"/>
+      <stop offset="1" stop-color="#cf5f2a"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5ec9c0"/>
+    </marker>
+    <marker id="arrowAccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#e8743b"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+      <feOffset dx="0" dy="3"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.35"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="560" fill="url(#bg)"/>
+
+  <text x="600" y="42" text-anchor="middle" fill="#d6f5f0" font-size="22" font-weight="700">Arquitectura de KAYLA</text>
+  <text x="600" y="66" text-anchor="middle" fill="#6b8a86" font-size="13">Flujo de datos: del registro del médico al recordatorio por Telegram</text>
+
+  <!-- Row 1: Google Form -> Google Sheets -> Python Script -->
+  <g filter="url(#shadow)">
+    <rect x="40" y="110" width="220" height="100" rx="14" fill="#1a3a35" stroke="#2a5a52" stroke-width="1.5"/>
+    <rect x="40" y="110" width="220" height="6" rx="3" fill="url(#accent)"/>
+    <text x="150" y="150" text-anchor="middle" fill="#fff" font-size="16" font-weight="600">Google Form</text>
+    <text x="150" y="172" text-anchor="middle" fill="#9ab8b3" font-size="12">El médico registra</text>
+    <text x="150" y="190" text-anchor="middle" fill="#7a9a95" font-size="11">al paciente</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="320" y="110" width="220" height="100" rx="14" fill="#1a3a35" stroke="#2a5a52" stroke-width="1.5"/>
+    <rect x="320" y="110" width="220" height="6" rx="3" fill="url(#accent)"/>
+    <text x="430" y="150" text-anchor="middle" fill="#fff" font-size="16" font-weight="600">Google Sheets</text>
+    <text x="430" y="172" text-anchor="middle" fill="#9ab8b3" font-size="12">Base de datos</text>
+    <text x="430" y="190" text-anchor="middle" fill="#7a9a95" font-size="11">de pacientes</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="600" y="110" width="220" height="100" rx="14" fill="#1a3a35" stroke="#2a5a52" stroke-width="1.5"/>
+    <rect x="600" y="110" width="220" height="6" rx="3" fill="url(#teal)"/>
+    <text x="710" y="150" text-anchor="middle" fill="#fff" font-size="16" font-weight="600">Script Python</text>
+    <text x="710" y="172" text-anchor="middle" fill="#9ab8b3" font-size="12">GitHub Actions</text>
+    <text x="710" y="190" text-anchor="middle" fill="#7a9a95" font-size="11">cada mañana 8 a.m.</text>
+  </g>
+
+  <line x1="260" y1="160" x2="315" y2="160" stroke="#5ec9c0" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="540" y1="160" x2="595" y2="160" stroke="#5ec9c0" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Connector down from Python Script -->
+  <path d="M 710 210 L 710 250 L 880 250 L 880 280" fill="none" stroke="#5ec9c0" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Row 2: Telegram Bot -->
+  <g filter="url(#shadow)">
+    <rect x="770" y="280" width="220" height="100" rx="14" fill="#1a3a35" stroke="#2a5a52" stroke-width="1.5"/>
+    <rect x="770" y="280" width="220" height="6" rx="3" fill="url(#teal)"/>
+    <text x="880" y="320" text-anchor="middle" fill="#fff" font-size="16" font-weight="600">Telegram Bot</text>
+    <text x="880" y="342" text-anchor="middle" fill="#9ab8b3" font-size="12">Mensaje al</text>
+    <text x="880" y="360" text-anchor="middle" fill="#7a9a95" font-size="11">médico a cargo</text>
+  </g>
+
+  <!-- Arrow from Telegram to Medico (right) -->
+  <line x1="990" y1="330" x2="1060" y2="330" stroke="#e8743b" stroke-width="2.5" marker-end="url(#arrowAccent)"/>
+
+  <!-- Medico box -->
+  <g filter="url(#shadow)">
+    <rect x="1060" y="280" width="120" height="100" rx="14" fill="url(#accent)"/>
+    <text x="1120" y="318" text-anchor="middle" fill="#fff" font-size="15" font-weight="700">Médico</text>
+    <text x="1120" y="338" text-anchor="middle" fill="#fff" font-size="11" opacity="0.9">recibe</text>
+    <text x="1120" y="354" text-anchor="middle" fill="#fff" font-size="11" opacity="0.9">recordatorio</text>
+  </g>
+
+  <!-- Connector down from Telegram Bot to Streamlit -->
+  <path d="M 880 380 L 880 420 L 430 420 L 430 450" fill="none" stroke="#5ec9c0" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Row 3: Streamlit + GitHub Pages -->
+  <g filter="url(#shadow)">
+    <rect x="320" y="450" width="220" height="80" rx="14" fill="#1a3a35" stroke="#2a5a52" stroke-width="1.5"/>
+    <rect x="320" y="450" width="220" height="6" rx="3" fill="url(#teal)"/>
+    <text x="430" y="486" text-anchor="middle" fill="#fff" font-size="16" font-weight="600">Streamlit</text>
+    <text x="430" y="506" text-anchor="middle" fill="#9ab8b3" font-size="12">Dashboard web</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="600" y="450" width="220" height="80" rx="14" fill="#1a3a35" stroke="#2a5a52" stroke-width="1.5"/>
+    <rect x="600" y="450" width="220" height="6" rx="3" fill="url(#teal)"/>
+    <text x="710" y="486" text-anchor="middle" fill="#fff" font-size="16" font-weight="600">GitHub Pages</text>
+    <text x="710" y="506" text-anchor="middle" fill="#9ab8b3" font-size="12">Landing page</text>
+  </g>
+
+  <line x1="540" y1="490" x2="595" y2="490" stroke="#5ec9c0" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Legend -->
+  <g transform="translate(40, 470)">
+    <rect x="0" y="0" width="10" height="10" rx="2" fill="url(#accent)"/>
+    <text x="18" y="9" fill="#9ab8b3" font-size="11">Entrada de datos</text>
+    <rect x="0" y="22" width="10" height="10" rx="2" fill="url(#teal)"/>
+    <text x="18" y="31" fill="#9ab8b3" font-size="11">Procesamiento / entrega</text>
+  </g>
+
+  <!-- URLs at bottom -->
+  <text x="430" y="548" text-anchor="middle" fill="#5ec9c0" font-size="11" font-family="monospace">kayla-demo.streamlit.app</text>
+  <text x="710" y="548" text-anchor="middle" fill="#5ec9c0" font-size="11" font-family="monospace">aaccasanih-wq.github.io/KAYLA</text>
+</svg>

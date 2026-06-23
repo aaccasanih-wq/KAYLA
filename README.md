@@ -19,6 +19,7 @@ KAYLA es un sistema que lee la base de datos de pacientes desde Google Sheets, i
 - [Despliegue](#despliegue)
 - [Modelo de negocio](#modelo-de-negocio)
 - [Roadmap](#roadmap)
+- [Documentación y pitch](#documentación-y-pitch)
 - [Autor](#autor)
 - [Licencia](#licencia)
 
@@ -103,7 +104,12 @@ KAYLA/
 ├── .env.example           # Variables de entorno (valores dummy)
 ├── .gitignore
 ├── requirements.txt       # Dependencias Python
-├── docs/                  # Pitch deck, capturas, diagramas, video
+├── docs/                  # Pitch deck, diagrama, video, evidencias
+│   ├── README.md          # Índice de documentación
+│   ├── pitch.html         # Pitch deck (14 slides, exportar a PDF)
+│   ├── architecture.svg   # Diagrama de arquitectura
+│   ├── video_script.md    # Guion del video demo
+│   └── research/          # 5 evidencias de validación
 ├── frontend/              # Dashboard Streamlit
 │   └── app.py
 ├── backend/               # Lógica de negocio, Sheets, Telegram
@@ -118,7 +124,10 @@ KAYLA/
 ├── data/                  # Muestras chicas; datasets grandes en releases
 ├── notebooks/             # Exploración y EDA
 ├── landing/               # Landing page HTML/CSS
-└── .github/workflows/     # CI + scheduler
+│   ├── index.html
+│   ├── pricing.html
+│   └── styles.css
+└── .github/workflows/     # CI + scheduler + deploy Pages
 ```
 
 ---
@@ -245,6 +254,37 @@ El scheduler reconstruye `credentials.json` desde el secret en base64 en cada ej
 | **3 meses** | 3 postas activas, sistema estable con Telegram, primeros usuarios pagando (plan Pro) |
 | **6 meses** | 10 postas, integración con WhatsApp Business API, dashboard con predicción de abandono |
 | **12 meses** | 50 postas (1 micro-red), primer convenio institucional (ONG o municipalidad), integración con HIS del MINSA |
+
+---
+
+## Documentación y pitch
+
+### Pitch deck
+
+- **[`docs/pitch.html`](docs/pitch.html)** — Pitch deck en formato Y Combinator (14 slides: one-liner, founder, problema, solución, mercado, competencia, producto, modelo de negocio, GTM, tracción, roadmap, riesgos, the ask).
+  - Para exportar a PDF: abrir en el navegador → ⌘P → "Guardar como PDF" → guardar como `docs/pitch.pdf`.
+  - Ver [`docs/README.md`](docs/README.md) para instrucciones detalladas.
+
+### Diagrama de arquitectura
+
+- **[`docs/architecture.svg`](docs/architecture.svg)** — Diagrama del flujo: Google Form → Google Sheets → Script Python (GitHub Actions) → Telegram Bot → Médico, con Streamlit y GitHub Pages como derivaciones.
+
+### Video demo
+
+- **Guion:** [`docs/video_script.md`](docs/video_script.md) — 2-3 minutos con timestamps y voz en off.
+- **Video grabado:** _pendiente de subir a YouTube/Loom_ (link aquí tras grabar).
+
+### Evidencias de validación
+
+Carpeta [`docs/research/`](docs/research/) con 5 evidencias:
+
+| # | Evidencia | Tipo |
+|---|-----------|------|
+| 1 | [Entrevista con técnico de posta](docs/research/01_entrevista_tecnico_posta.md) | Entrevista |
+| 2 | [Entrevista con médico de posta](docs/research/02_entrevista_medico_posta.md) | Entrevista |
+| 3 | [Observación de flujo en posta](docs/research/03_observacion_flujo_posta.md) | Observación de campo |
+| 4 | [Validación de métricas del MINSA](docs/research/04_validacion_metricas_minsa.md) | Investigación documental |
+| 5 | [Lista de espera y señales de demanda](docs/research/05_lista_espera_demanda.md) | Tracción temprana |
 
 ---
 

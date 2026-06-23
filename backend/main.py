@@ -30,7 +30,13 @@ def send_reminders(
     bot: TelegramBot,
     dry_run: bool = False,
 ) -> int:
-    """Envía recordatorios agrupados por médico. Retorna el total enviados."""
+    """Envía recordatorios agrupados por médico. Retorna el total enviados.
+
+    Cada médico recibe solo los recordatorios de sus propios pacientes,
+    enviados a su chat_id de Telegram (columna `telegram_chat_id` del Sheet).
+    Si un médico no tiene chat_id configurado, se usa el chat por defecto
+    (TELEGRAM_CHAT_ID_MEDICO) como fallback.
+    """
     total_sent = 0
 
     for medico, reminders in reminders_by_medico.items():
@@ -44,18 +50,23 @@ def send_reminders(
 
         message = "\n".join(lines).strip()
 
+        chat_id = reminders[0].paciente.telegram_chat_id or bot.default_chat_id
+
         if dry_run:
-            print(f"\n  [DRY-RUN] Mensaje para {medico} ({len(reminders)} recordatorio(s)):")
+            print(f"\n  [DRY-RUN] Mensaje para {medico} ({len(reminders)} recordatorio(s)) -> chat_id: {chat_id}:")
             print("  " + "-" * 60)
             for line in message.split("\n"):
                 print(f"  {line}")
             print("  " + "-" * 60)
         else:
+            if not chat_id:
+                print(f"  ERROR: {medico} no tiene chat_id y no hay TELEGRAM_CHAT_ID_MEDICO. Se omite.")
+                continue
             try:
-                bot.send_message(text=message, parse_mode="Markdown")
-                print(f"  Enviados {len(reminders)} recordatorio(s) a {medico}")
+                bot.send_message(text=message, chat_id=chat_id, parse_mode="Markdown")
+                print(f"  Enviados {len(reminders)} recordatorio(s) a {medico} (chat {chat_id})")
             except Exception as e:
-                print(f"  ERROR enviando a {medico}: {e}")
+                print(f"  ERROR enviando a {medico} (chat {chat_id}): {e}")
                 continue
 
         total_sent += len(reminders)
