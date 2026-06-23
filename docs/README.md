@@ -18,7 +18,7 @@ arquitectura, guion del video demo y evidencias de validación.
 
 ### Capturas de pantalla
 
-- **[`screenshots/`](screenshots/)** — Capturas del dashboard, Telegram, landing y Sheet (ver [`screenshots/README.md`](screenshots/README.md) para la guía de captura).
+- **[`screenshots/`](screenshots/)** — Capturas del dashboard, Telegram, landing y Sheet.
 
 ### Video demo
 
@@ -34,13 +34,6 @@ Carpeta **[`research/`](research/)** con 5 evidencias de validación:
 3. [`03_observacion_flujo_posta.md`](research/03_observacion_flujo_posta.md) — Observación de flujo de trabajo en posta
 4. [`04_validacion_metricas_minsa.md`](research/04_validacion_metricas_minsa.md) — Validación de métricas del MINSA
 5. [`05_lista_espera_demanda.md`](research/05_lista_espera_demanda.md) — Lista de espera y señales de demanda
-
-### Guías de configuración
-
-- [`google_sheets_setup.md`](google_sheets_setup.md) — Cómo configurar Google Sheets y las credenciales
-- [`telegram_bot_setup.md`](telegram_bot_setup.md) — Cómo crear y configurar el bot de Telegram
-- [`google_form_setup.md`](google_form_setup.md) — Cómo vincular el Google Form al Sheet
-- [`sheet_access_control.md`](sheet_access_control.md) — Control de acceso al Sheet por médico
 
 ## Cómo exportar el pitch deck a PDF
 
