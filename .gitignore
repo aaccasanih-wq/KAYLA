@@ -32,6 +32,13 @@ data/pacientes_reales.csv
 data/*.xlsx
 data/*.xls
 
+# Guías internas de configuración (no son entregables)
+docs/google_sheets_setup.md
+docs/telegram_bot_setup.md
+docs/google_form_setup.md
+docs/sheet_access_control.md
+docs/screenshots/README.md
+
 # Notebooks checkpoints
 .ipynb_checkpoints/
 

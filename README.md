@@ -304,7 +304,7 @@ Las capturas están en [`docs/screenshots/`](docs/screenshots/):
 | `landing.png` | Landing page con hero, problema, solución y pricing. |
 | `sheet.png` | Google Sheet de pacientes con el formulario vinculado. |
 
-> Ver [`docs/screenshots/README.md`](docs/screenshots/README.md) para la guía de captura.
+> Las capturas son referenciales; tómalas desde el dashboard y la landing en vivo.
 
 ## Video demo
 

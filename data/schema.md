@@ -76,5 +76,5 @@ Ver `data/sample_pacientes.csv` para un ejemplo con 5 pacientes ficticios (sin d
 
 - El Google Sheet **no debe contener datos sensibles sin consentimiento** (Ley 29733 — Ley de Protección de Datos Personales del Perú).
 - Para el MVP, los pacientes ficticios de ejemplo usan DNIs y celulares inventados.
-- **Acceso al Sheet restringido:** el Sheet se comparte solo con el `client_email` de la service account (Editor) y la propietaria (Editor). Los médicos **no tienen acceso directo** al Sheet — solo pueden agregar pacientes mediante el Google Form vinculado. Ver `docs/sheet_access_control.md`.
-- **Routing por médico:** cada médico recibe sus recordatorios en su propio chat de Telegram (campo `telegram_chat_id`). Si el campo está vacío, se usa `TELEGRAM_CHAT_ID_MEDICO` como fallback. Ver `docs/google_form_setup.md` para el flujo de registro de médicos.
+- **Acceso al Sheet restringido:** el Sheet se comparte solo con el `client_email` de la service account (Editor) y la propietaria (Editor). Los médicos **no tienen acceso directo** al Sheet — solo pueden agregar pacientes mediante el Google Form vinculado.
+- **Routing por médico:** cada médico recibe sus recordatorios en su propio chat de Telegram (campo `telegram_chat_id`). Si el campo está vacío, se usa `TELEGRAM_CHAT_ID_MEDICO` como fallback.
