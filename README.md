@@ -8,7 +8,7 @@ KAYLA es un sistema que lee la base de datos de pacientes desde Google Sheets, i
 > - Dashboard: https://kayla2026.streamlit.app
 > - Landing page: https://aaccasanih-wq.github.io/KAYLA/
 > - Repositorio: https://github.com/aaccasanih-wq/KAYLA
-> - Video demo: https://youtu.be/eS7Ftky9shU
+> - Video demo: https://drive.google.com/file/d/1WlgMcpxPz_G7Xx2B4wihIAoTQczaZimF/view?usp=sharing
 
 ---
 
@@ -253,7 +253,7 @@ El scheduler reconstruye `credentials.json` desde el secret en base64 en cada ej
 | CI (lint + tests) | GitHub Actions | Activo |
 | Landing page | GitHub Pages | https://aaccasanih-wq.github.io/KAYLA/ |
 | Dashboard | Streamlit Community Cloud | https://kayla2026.streamlit.app |
-| Video demo | YouTube | https://youtu.be/eS7Ftky9shU |
+| Video demo | Google Drive | https://drive.google.com/file/d/1WlgMcpxPz_G7Xx2B4wihIAoTQczaZimF/view?usp=sharing |
 
 ### Dashboard en Streamlit Community Cloud
 
@@ -308,7 +308,7 @@ Las capturas están en [`docs/screenshots/`](docs/screenshots/):
 
 ## Video demo
 
-- **Video grabado:** https://youtu.be/eS7Ftky9shU (2-3 minutos, demo del dashboard, Telegram y landing).
+- **Video grabado:** https://drive.google.com/file/d/1WlgMcpxPz_G7Xx2B4wihIAoTQczaZimF/view?usp=sharing (2-3 minutos, demo del dashboard, Telegram y landing).
 - **Guion:** [`docs/video_script.md`](docs/video_script.md) — timestamps y voz en off.
 
 ---
