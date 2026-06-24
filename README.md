@@ -35,7 +35,7 @@ KAYLA es un sistema que lee la base de datos de pacientes desde Google Sheets, i
 
 ## Problema
 
-El **40 % de pacientes crónicos** (hipertensos, diabéticos) en postas de primer nivel de salud del MINSA en Perú no recogen sus medicamentos ni asisten a sus controles mensuales. Los técnicos y enfermeras pierden horas llamando manualmente a ~80 pacientes al mes. Si no se cumplen las métricas de la Diris/Diresa, la posta pierde recursos o el personal recibe sanciones.
+El **39.7 % de pacientes hipertensos peruanos** no se adhiere al tratamiento farmacológico (ENDES 2022). En las postas de primer nivel del MINSA, los técnicos y enfermeras pierden horas llamando manualmente a pacientes para recordarles sus citas y recojos de medicamentos. Si no se cumplen las métricas de la Diris/Diresa, la posta pierde recursos o el personal recibe sanciones.
 
 **Cómo lo resuelven hoy:** Excel + llamadas manuales + WhatsApp personal del médico. Sin sistema, sin automatización, sin métricas.
 

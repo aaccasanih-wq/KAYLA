@@ -26,11 +26,11 @@
 **Pantalla:** Landing page (hero section)
 
 **Voz en off:**
-> "KAYLA es un sistema que automatiza los recordatorios de medicamentos y controles médicos para pacientes crónicos en postas de salud del Perú. El problema: el 40% de los pacientes no recoge sus medicamentos, y los médicos pierden horas llamándolos manualmente."
+> "KAYLA es un sistema que automatiza los recordatorios de medicamentos y controles médicos para pacientes crónicos en postas de salud del Perú. El problema: según la ENDES 2022, casi el 40% de los pacientes hipertensos no se adhiere al tratamiento, y los médicos pierden horas llamándolos manualmente."
 
 ### [0:20 - 0:45] El problema
 
-**Pantalla:** Scroll por la sección "Problema" de la landing (las 3 tarjetas: 40% abandona, horas perdidas, recursos en riesgo)
+**Pantalla:** Scroll por la sección "Problema" de la landing (las 3 tarjetas: ~40% no se adhiere, horas perdidas, recursos en riesgo)
 
 **Voz en off:**
 > "Las postas de primer nivel del MINSA gestionan pacientes hipertensos y diabéticos con Excel y llamadas manuales. Si no cumplen las métricas de la Diris, la posta pierde recursos. No tienen presupuesto para software de gestión, pero sí usan Google Sheets y Telegram."
