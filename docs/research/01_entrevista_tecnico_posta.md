@@ -10,8 +10,8 @@
 ## Contexto
 
 El entrevistado trabaja como técnico en una posta de primer nivel de salud en Lima Este.
-Atiende a aproximadamente 80 pacientes crónicos (hipertensos y diabéticos) que deben
-recoger medicamentos mensualmente y asistir a controles.
+Atiende a pacientes crónicos (hipertensos y diabéticos) que deben recoger medicamentos
+mensualmente y asistir a controles.
 
 ---
 
@@ -25,7 +25,8 @@ recoger medicamentos mensualmente y asistir a controles.
 
 ### ¿Qué porcentaje de pacientes recoge sus medicamentos a tiempo?
 
-> "Yo diría que un 40% no viene. Hay pacientes que ya conoces, sabes que no van a ir.
+> "Yo diría que como un 40% no viene. Es una estimación mía, pero calza con lo que
+> he leído de la ENDES. Hay pacientes que ya conoces, sabes que no van a ir.
 > Pero igual tienes que llamarlos porque sino te bajan el indicador."
 
 ### ¿Qué pasa si no cumplen las métricas de la Diris?
@@ -54,7 +55,7 @@ recoger medicamentos mensualmente y asistir a controles.
 
 ## Insights para el producto
 
-1. **El dolor es real y medible:** 40% de abandono confirmado, pérdida de 2-3 horas/día.
+1. **El dolor es real y medible:** ~40% de no adherencia (estimación de campo consistente con ENDES 2022: 39.7% nacional), pérdida de 2-3 horas/día.
 2. **Excel es la herramienta real:** los sistemas del MINSA no se usan para gestión diaria.
 3. **Telegram/WhatsApp son viables:** el personal ya usa smartphones y mensajería.
 4. **El insight clave:** "si me llegara un mensaje cada mañana, me ahorraría dos horas" —

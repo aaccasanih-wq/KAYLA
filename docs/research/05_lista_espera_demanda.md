@@ -17,7 +17,7 @@ interesados en probar KAYLA.
 ### Posta 1 — Lima Este (hermano del founder)
 
 - **Estado:** Activa. Sistema configurado con pacientes reales.
-- **Configuración:** Google Sheet con 80 pacientes, bot de Telegram configurado,
+- **Configuración:** Google Sheet con pacientes reales, bot de Telegram configurado,
   scheduler de GitHub Actions activo.
 - **Feedback inicial:** el técnico recibe los recordatorios cada mañana y confirma
   que le ahorra tiempo de filtrado.
