@@ -288,7 +288,7 @@ El dashboard lee los pacientes desde Google Sheets usando una Service Account. E
 | Plazo | Hito |
 |-------|------|
 | **3 meses** | 3 postas activas, sistema estable con Telegram, primeros usuarios pagando (plan Pro) |
-| **6 meses** | 10 postas, integración con WhatsApp Business API, dashboard con predicción de abandono |
+| **6 meses** | 10 postas, agentes de voz con IA que llaman directamente a los pacientes, dashboard con predicción de abandono |
 | **12 meses** | 50 postas (1 micro-red), primer convenio institucional (ONG o municipalidad), integración con HIS del MINSA |
 
 ---
