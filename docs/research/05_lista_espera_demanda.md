@@ -19,10 +19,10 @@ interesados en probar KAYLA.
 - **Estado:** Activa. Sistema configurado con pacientes reales.
 - **Configuración:** Google Sheet con pacientes reales, bot de Telegram configurado,
   scheduler de GitHub Actions activo.
-- **Feedback inicial:** el técnico recibe los recordatorios cada mañana y confirma
+- **Feedback inicial:** el médico recibe los recordatorios cada mañana y confirma
   que le ahorra tiempo de filtrado.
 - **Próxima iteración:** agregar campo "intentos de llamada" al Google Sheet para
-  que el técnico registre el resultado de cada llamada.
+  que el médico registre el resultado de cada llamada.
 
 ---
 
