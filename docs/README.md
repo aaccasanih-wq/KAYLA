@@ -29,7 +29,7 @@ arquitectura, guion del video demo y evidencias de validación.
 
 Carpeta **[`research/`](research/)** con 5 evidencias de validación:
 
-1. [`01_entrevista_tecnico_posta.md`](research/01_entrevista_tecnico_posta.md) — Entrevista con técnico de posta (Lima Este)
+1. [`01_entrevista_tecnico_posta.md`](research/01_entrevista_tecnico_posta.md) — Entrevista con médico de posta (Lima Este)
 2. [`02_entrevista_medico_posta.md`](research/02_entrevista_medico_posta.md) — Entrevista con médico de posta (Lima Norte)
 3. [`03_observacion_flujo_posta.md`](research/03_observacion_flujo_posta.md) — Observación de flujo de trabajo en posta
 4. [`04_validacion_metricas_minsa.md`](research/04_validacion_metricas_minsa.md) — Validación de métricas del MINSA

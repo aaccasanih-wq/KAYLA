@@ -1,7 +1,7 @@
 # Evidencia 04 — Validación de métricas del MINSA
 
 **Fecha:** 17 de junio, 2026
-**Fuente:** Documentos públicos del MINSA + conversación con técnico de posta
+**Fuente:** Documentos públicos del MINSA + conversación con médico de posta
 **Recopilación:** Founder (Axel Ccasani)
 
 ---
@@ -36,7 +36,7 @@ mejorarlas.
 
 ## Consecuencias de no cumplir las métricas
 
-Según el técnico de posta entrevistado (Evidencia 01):
+Según el médico de posta entrevistado (Evidencia 01):
 
 1. **Descuento en la evaluación del personal:** los técnicos y médicos reciben
    observaciones en su evaluación de desempeño.
@@ -62,7 +62,7 @@ Según el técnico de posta entrevistado (Evidencia 01):
 
 - **Pacientes crónicos por posta:** variable (decenas a cientos según categoría I-1 a I-4).
 - **No adherencia nacional:** 39.7% de hipertensos no se adhiere al tratamiento
-  farmacológico (ENDES 2022, tesis UPCH). La estimación de campo del técnico
+  farmacológico (ENDES 2022, tesis UPCH). La estimación de campo del médico
   entrevistado (~40%) es consistente con este dato.
 - **Impacto estimado de KAYLA:** si los recordatorios reducen la no adherencia
   de ~40% a ~25%, la posta recupera una fracción significativa de pacientes al mes.
@@ -88,7 +88,7 @@ Según el técnico de posta entrevistado (Evidencia 01):
 
 - Ministerio de Salud del Perú (MINSA). Esquema de Atención Integral de Salud.
 - Diris Lima Este. Documentos de gestión 2024-2025.
-- Conversación con técnico de posta (Evidencia 01).
+- Conversación con médico de posta (Evidencia 01).
 
 ---
 

@@ -439,11 +439,11 @@
   </div>
   <div class="slide-content" style="justify-content:center; align-items:flex-start;">
     <span class="eyebrow">Salud pública · Perú · 2026</span>
-    <h1 style="font-size:3.8rem; max-width:1000px;">Recordatorios automáticos de medicamentos para postas de salud</h1>
+    <h1 style="font-size:3.8rem; max-width:1000px;">Agentes de IA para recordatorios, reservas y confirmaciones de citas</h1>
     <p class="lead" style="font-size:1.5rem; max-width:820px; margin-top:12px;">
-      Automatizamos los recordatorios de medicamentos y controles médicos para pacientes
-      crónicos vía Telegram, reduciendo la pérdida de pacientes en las micro-redes de
-      salud pública del Perú.
+      Plataforma de agentes de IA que automatizan recordatorios, reservas y confirmaciones
+      de citas para postas de salud y clínicas privadas, empezando con Telegram y avanzando
+      hacia llamadas de voz con IA.
     </p>
     <div style="display:flex; gap:16px; margin-top:36px;">
       <span class="pill">MVP funcional</span>
@@ -470,18 +470,18 @@
         <h3 style="font-size:1.5rem; margin-bottom:14px;">Axel Aaron Ccasani Huachua</h3>
         <p style="margin-bottom:16px;">
           Estudiante de Economía en la Universidad del Pacífico. Construye KAYLA como
-          solo founder usando agentes de IA como co-founder técnico.
+          solo founder usando agentes de IA como co-founder de ingeniería.
         </p>
         <p style="color:var(--text-soft);">
-          <strong>Founder-market fit:</strong> hermano es técnico de posta del MINSA en Lima.
+          <strong>Founder-market fit:</strong> hermano es médico de posta del MINSA en Lima.
           Acceso directo al problema, a los usuarios y a las métricas reales de la Diris.
         </p>
       </div>
       <div class="card">
         <h3>Cómo cubro los roles con IA</h3>
         <ul class="check-list" style="margin-top:14px;">
-          <li><strong>Ingeniería:</strong> Claude Code como co-founder técnico</li>
-          <li><strong>Producto:</strong> validación con hermano + médicos reales</li>
+          <li><strong>Ingeniería:</strong> Claude Code como co-founder de ingeniería</li>
+          <li><strong>Producto:</strong> validación con hermano (médico de posta) + médicos reales</li>
           <li><strong>Ops:</strong> GitHub Actions y Streamlit Cloud automatizan</li>
           <li><strong>Datos:</strong> Google Sheets + Python + Streamlit</li>
         </ul>
@@ -504,9 +504,9 @@
     <span class="eyebrow">El problema</span>
     <h2>El 40% de pacientes crónicos no se adhiere al tratamiento</h2>
     <p class="lead" style="max-width:900px; margin-bottom:36px;">
-      Técnicos, médicos y enfermeras de postas de primer nivel del MINSA gestionan
+      Médicos y enfermeras de postas de primer nivel del MINSA gestionan
       pacientes crónicos con Excel y llamadas manuales. Si no cumplen las métricas de la
-      Diris/Diresa, la posta pierde recursos y el personal recibe sanciones.
+      Diris/Diresa, la posta pierde recursos.
     </p>
     <div class="grid-3">
       <div class="stat">
@@ -523,10 +523,10 @@
       </div>
     </div>
     <div class="quote" style="margin-top:36px;">
-      "Si me llegara un mensaje cada mañana con los pacientes que debo llamar, me ahorraría dos horas."
+      "Si me llegara un mensaje cada mañana con los pacientes que debo llamar, me ahorraría una hora."
     </div>
     <p style="color:var(--muted); font-size:0.95rem; margin-top:8px;">
-      — Técnico de posta, Lima (hermano del founder, validación de campo)
+      — Médico de posta, Lima (hermano del founder, validación de campo)
     </p>
     <p style="color:var(--muted); font-size:0.85rem; margin-top:12px;">
       Fuentes: ENDES 2022 (adherencia terapéutica), MINSA OGE 2017 (prevalencia), VA Consultores 2024 (establecimientos)
@@ -711,7 +711,7 @@
       </div>
       <div class="card" style="text-align:center; padding:18px;">
         <h3 style="font-size:1rem;">Relaciones</h3>
-        <p style="font-size:0.9rem;">Founder conectado al sector. Red de contactos con técnicos y médicos del MINSA</p>
+        <p style="font-size:0.9rem;">Founder conectado al sector. Red de contactos con médicos del MINSA</p>
       </div>
       <div class="card" style="text-align:center; padding:18px;">
         <h3 style="font-size:1rem;">Workflow integrado</h3>
@@ -768,14 +768,15 @@
     <span class="eyebrow">Modelo de negocio y pricing</span>
     <h2>Freemium B2B ligero</h2>
     <p class="lead" style="max-width:880px; margin-bottom:32px;">
-      No vendemos al Estado directamente. Vendemos a profesionales de salud que luego
-      presionan hacia arriba. Costo variable por usuario: ~S/0.
+      No vendemos al Estado directamente. Vendemos a profesionales de salud y operadores
+      de micro-redes (médicos, ONG, gestores de varias sedes) que luego presionan hacia
+      arriba. Costo variable por usuario: ~S/0.
     </p>
     <div class="pricing-mini">
       <div class="plan-mini">
         <h3>Gratis</h3>
         <div class="price">S/0</div>
-        <div class="price-sub">/mes</div>
+        <div class="price-sub">/mes · 1 sola sede</div>
         <ul>
           <li>1 posta</li>
           <li>50 pacientes</li>
@@ -786,7 +787,7 @@
       <div class="plan-mini featured">
         <h3>Pro</h3>
         <div class="price">S/49</div>
-        <div class="price-sub">/mes</div>
+        <div class="price-sub">/mes · multi-sede</div>
         <ul>
           <li>3 postas</li>
           <li>500 pacientes</li>
@@ -797,7 +798,7 @@
       <div class="plan-mini">
         <h3>Micro-red</h3>
         <div class="price">S/199</div>
-        <div class="price-sub">/mes</div>
+        <div class="price-sub">/mes · operador</div>
         <ul>
           <li>10 postas</li>
           <li>Pacientes ilimitados</li>
@@ -857,7 +858,7 @@
         <div style="padding-top:12px;">
           <p style="color:rgba(255,255,255,0.9); margin:0;">
             Grupos de Facebook de médicos del MINSA, foros de salud pública, WhatsApp groups
-            de técnicos. <strong>Referrals</strong> de los primeros 10 usuarios.
+            de médicos. <strong>Referrals</strong> de los primeros 10 usuarios.
           </p>
         </div>
       </div>
@@ -899,23 +900,23 @@
       <div class="card" style="text-align:center; border-top:4px solid var(--teal);">
         <div style="font-size:2.4rem; font-weight:800; color:var(--teal);">3</div>
         <h3 style="font-size:1rem;">En lista de espera</h3>
-        <p>Médicos y técnicos esperando prueba del sistema en sus postas.</p>
+        <p>Médicos esperando prueba del sistema en sus postas.</p>
       </div>
       <div class="card" style="text-align:center; border-top:4px solid var(--accent);">
-        <div style="font-size:2.4rem; font-weight:800; color:var(--accent);">5+</div>
+        <div style="font-size:2.4rem; font-weight:800; color:var(--accent);">3</div>
         <h3 style="font-size:1rem;">Entrevistas</h3>
         <p>Conversaciones documentadas con personal de salud sobre el problema.</p>
       </div>
     </div>
     <div class="quote" style="margin-top:32px;">
-      "Si me llegara un mensaje cada mañana con los pacientes que debo llamar, me ahorraría dos horas."
+      "Si me llegara un mensaje cada mañana con los pacientes que debo llamar, me ahorraría una hora."
     </div>
     <p style="color:var(--muted); font-size:0.95rem; margin-top:8px;">
       — Médico de posta, Lima (entrevista de validación, ver docs/research/)
     </p>
   </div>
   <div class="slide-footer">
-    <span>1 posta activa + 3 en espera + 5 entrevistas</span>
+    <span>1 posta activa + 3 en espera + 3 entrevistas</span>
     <span>KAYLA · 2026</span>
   </div>
 </section>
@@ -942,8 +943,8 @@
       </div>
       <div class="timeline-item">
         <div class="timeline-label">12 meses</div>
-        <h3>Micro-red</h3>
-        <p>50 postas (1 micro-red), primer convenio institucional con ONG o municipalidad, integración con HIS del MINSA.</p>
+        <h3>Micro-red + clínicas</h3>
+        <p>50 postas (1 micro-red), expansión a clínicas privadas con agentes de IA de voz para reservas y confirmaciones de citas, plataforma de métricas y reportes, primer convenio institucional (ONG o municipalidad).</p>
       </div>
     </div>
     <div style="margin-top:36px; padding:24px; background:var(--bg-soft); border-radius:14px;">
@@ -982,7 +983,7 @@
       <div class="risk-card">
         <span class="severity severity-med">Medio</span>
         <h3>Solo founder / capacidad</h3>
-        <p><strong>Mitigación:</strong> agentes de IA (Claude Code) como co-founder técnico. MVP mínimo y enfocado. GitHub Actions y Streamlit Cloud automatizan la operación.</p>
+        <p><strong>Mitigación:</strong> agentes de IA (Claude Code) como co-founder de ingeniería. MVP mínimo y enfocado. GitHub Actions y Streamlit Cloud automatizan la operación.</p>
       </div>
     </div>
   </div>

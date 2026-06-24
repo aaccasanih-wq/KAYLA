@@ -18,8 +18,8 @@ Este documento define la estructura de datos de la hoja `Pacientes` del Google S
 | 6 | `fecha_recojo_medicamento` | fecha | No | Fecha del próximo recojo de medicamento (`YYYY-MM-DD`). |
 | 7 | `fecha_proximo_control` | fecha | No | Fecha del próximo control médico (`YYYY-MM-DD`). |
 | 8 | `posta` | texto | Sí | Nombre o código de la posta de salud. |
-| 9 | `medico_a_cargo` | texto | Sí | Nombre del médico/técnico responsable. |
-| 10 | `correo_medico` | texto | Sí | Correo del médico/técnico (para envío de reportes). |
+| 9 | `medico_a_cargo` | texto | Sí | Nombre del médico responsable. |
+| 10 | `correo_medico` | texto | Sí | Correo del médico (para envío de reportes). |
 | 11 | `telegram_chat_id` | texto | No | Chat ID de Telegram del médico (para enviarle sus recordatorios). Si está vacío, se usa `TELEGRAM_CHAT_ID_MEDICO` como fallback. |
 | 12 | `estado` | texto | Sí | `activo`, `inactivo`, `fallecido`. Default: `activo`. |
 | 13 | `observaciones` | texto | No | Notas libres (alergias, condiciones especiales, etc.). |

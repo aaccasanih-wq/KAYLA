@@ -1,7 +1,7 @@
-# Evidencia 01 — Entrevista con técnico de posta (Lima)
+# Evidencia 01 — Entrevista con médico de posta (Lima)
 
 **Fecha:** 15 de junio, 2026
-**Entrevistado:** Técnico de posta de primer nivel, MINSA (Lima Este)
+**Entrevistado:** Médico de posta de primer nivel, MINSA (Lima Este)
 **Relación:** Hermano del founder
 **Duración:** ~30 minutos (conversación informal, notas retrospectivas)
 
@@ -9,7 +9,7 @@
 
 ## Contexto
 
-El entrevistado trabaja como técnico en una posta de primer nivel de salud en Lima Este.
+El entrevistado trabaja como médico en una posta de primer nivel de salud en Lima Este.
 Atiende a pacientes crónicos (hipertensos y diabéticos) que deben recoger medicamentos
 mensualmente y asistir a controles.
 
@@ -20,7 +20,7 @@ mensualmente y asistir a controles.
 ### ¿Cómo gestionan actualmente los recordatorios a pacientes crónicos?
 
 > "Llevamos un Excel con los pacientes. Cada mes, cuando llega la fecha de recojo,
-> llamamos uno por uno. Hay días que pierdo dos o tres horas llamando. Muchos no
+> llamamos uno por uno. Hay días que pierdo una hora llamando. Muchos no
 > contestan, otros dicen que van a ir y no van."
 
 ### ¿Qué porcentaje de pacientes recoge sus medicamentos a tiempo?
@@ -32,8 +32,7 @@ mensualmente y asistir a controles.
 ### ¿Qué pasa si no cumplen las métricas de la Diris?
 
 > "Si no llegamos a la meta de pacientes controlados, nos descuentan puntos.
-> Y si la posta queda mal evaluada, puede perder recursos o el personal recibe
-> observaciones. Es presión constante."
+> Y si la posta queda mal evaluada, puede perder recursos. Es presión constante."
 
 ### ¿Usan algún sistema del MINSA para gestionar esto?
 
@@ -44,21 +43,21 @@ mensualmente y asistir a controles.
 ### ¿Te serviría un sistema que te envíe un mensaje cada mañana con los pacientes que debes llamar?
 
 > "Si me llegara un mensaje cada mañana con los pacientes que debo llamar, me
-> ahorraría dos horas. Yo ya tendría la lista lista, solo llamar."
+> ahorraría una hora. Yo ya tendría la lista lista, solo llamar."
 
 ### ¿Tienen acceso a internet y smartphones en la posta?
 
-> "Sí, tenemos internet. Y todos los técnicos tenemos celular. Usamos WhatsApp
-> para todo, también Telegram con algunos colegas."
+> "Sí, tenemos internet. Y todo el personal de la posta tiene celular. Usamos
+> WhatsApp para todo, también Telegram con algunos colegas."
 
 ---
 
 ## Insights para el producto
 
-1. **El dolor es real y medible:** ~40% de no adherencia (estimación de campo consistente con ENDES 2022: 39.7% nacional), pérdida de 2-3 horas/día.
+1. **El dolor es real y medible:** ~40% de no adherencia (estimación de campo consistente con ENDES 2022: 39.7% nacional), pérdida de hasta una hora al día en llamadas.
 2. **Excel es la herramienta real:** los sistemas del MINSA no se usan para gestión diaria.
 3. **Telegram/WhatsApp son viables:** el personal ya usa smartphones y mensajería.
-4. **El insight clave:** "si me llegara un mensaje cada mañana, me ahorraría dos horas" —
+4. **El insight clave:** "si me llegara un mensaje cada mañana, me ahorraría una hora" —
    valida la propuesta de KAYLA de enviar recordatorios agrupados al médico.
 
 ---
@@ -67,4 +66,4 @@ mensualmente y asistir a controles.
 
 - Esta posta fue seleccionada como la primera posta en pilotaje del MVP.
 - Se configuró el Google Sheet con datos de pacientes reales (anonimizados para el repo).
-- Se configuró el bot de Telegram para enviar recordatorios al técnico.
+- Se configuró el bot de Telegram para enviar recordatorios al médico.

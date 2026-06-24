@@ -1,8 +1,8 @@
 # KAYLA
 
-> **One-liner:** Automatizamos los recordatorios de medicamentos y controles médicos para pacientes crónicos de postas de salud vía Telegram, reduciendo la pérdida de pacientes y mejorando las métricas de las micro-redes de salud pública en Perú.
+> **One-liner:** Plataforma de agentes de IA que automatizan recordatorios, reservas y confirmaciones de citas para postas de salud y clínicas privadas, empezando con Telegram y avanzando hacia llamadas de voz con IA.
 
-KAYLA es un sistema que lee la base de datos de pacientes desde Google Sheets, identifica quién tiene fecha de recojo de medicamentos o control médico próximo, y envía recordatorios automáticos por Telegram al médico o técnico a cargo. Incluye un dashboard web (Streamlit) para visualizar el estado de todos los pacientes y recordatorios.
+KAYLA es un sistema que lee la base de datos de pacientes desde Google Sheets, identifica quién tiene fecha de recojo de medicamentos o control médico próximo, y envía recordatorios automáticos por Telegram al médico a cargo. Incluye un dashboard web (Streamlit) para visualizar el estado de todos los pacientes y recordatorios. La visión a futuro es convertirse en una plataforma de agentes de IA de voz para recordatorios, reservas y confirmaciones de citas, tanto para postas de salud como para clínicas privadas, con métricas y reportes integrados.
 
 > **Demo en vivo (sin instalar nada):**
 > - Dashboard: https://kayla2026.streamlit.app
@@ -35,7 +35,7 @@ KAYLA es un sistema que lee la base de datos de pacientes desde Google Sheets, i
 
 ## Problema
 
-El **39.7 % de pacientes hipertensos peruanos** no se adhiere al tratamiento farmacológico (ENDES 2022). En las postas de primer nivel del MINSA, los técnicos y enfermeras pierden horas llamando manualmente a pacientes para recordarles sus citas y recojos de medicamentos. Si no se cumplen las métricas de la Diris/Diresa, la posta pierde recursos o el personal recibe sanciones.
+El **39.7 % de pacientes hipertensos peruanos** no se adhiere al tratamiento farmacológico (ENDES 2022). En las postas de primer nivel del MINSA, los médicos y enfermeras pierden horas llamando manualmente a pacientes para recordarles sus citas y recojos de medicamentos. Si no se cumplen las métricas de la Diris/Diresa, la posta pierde recursos.
 
 **Cómo lo resuelven hoy:** Excel + llamadas manuales + WhatsApp personal del médico. Sin sistema, sin automatización, sin métricas.
 
@@ -45,11 +45,13 @@ KAYLA se integra con las herramientas que las postas **ya usan** (Google Sheets 
 
 1. El médico registra pacientes en un Google Form (o edita directamente el Google Sheet).
 2. Cada mañana, el sistema revisa quién tiene fecha de recojo/control en los próximos 2 días.
-3. Envía un mensaje de Telegram al médico/técnico a cargo con los datos del paciente.
+3. Envía un mensaje de Telegram al médico a cargo con los datos del paciente.
 4. El médico contacta al paciente y confirma la asistencia.
 5. El dashboard de Streamlit muestra el estado de todos los pacientes y recordatorios.
 
 **Insight:** No es un problema de "falta de tecnología en salud". Es un problema de herramientas que no llegan al primer nivel. Las postas no tienen presupuesto para software de gestión, pero sí tienen Google Sheets y Telegram. El sistema debe funcionar con lo que ya usan.
+
+**Visión de producto:** el MVP resuelve recordatorios con Telegram. El roadmap es construir una plataforma de agentes de IA de voz que automaticen recordatorios, reservas y confirmaciones de citas para postas de salud y clínicas privadas (ciclo de venta más rápido), con una plataforma de métricas y reportes integrados.
 
 ---
 
@@ -65,7 +67,7 @@ KAYLA se integra con las herramientas que las postas **ya usan** (Google Sheets 
                               ┌─────────────────────────────┘
                               ▼
                     ┌─────────────────┐
-                    │  Telegram Bot   │────▶ Médico/Técnico recibe:
+                    │  Telegram Bot   │────▶ Médico recibe:
                     │  (mensaje al    │       "Juan Pérez (HTA) debe
                     │   médico)       │        recoger medicamento
                     │                 │        el 25/06. Cel: 999888777"
@@ -92,7 +94,7 @@ KAYLA se integra con las herramientas que las postas **ya usan** (Google Sheets 
 | Dashboard | Streamlit | Del curso, rápido de construir, desplegable gratis |
 | Landing page | HTML/CSS estático + GitHub Pages | Gratis, rápido, profesional |
 | Scheduler | GitHub Actions | Gratis (500 min/mes), integrado al repo |
-| Asistencia de código | Claude Code / Cursor | Co-founder técnico virtual |
+| Asistencia de código | Claude Code / Cursor | Co-founder de ingeniería virtual |
 
 ### Herramientas del curso usadas (mínimo 2 requeridas)
 
@@ -197,7 +199,7 @@ Ver `.env.example` para la lista completa. **Nunca subir `.env` ni `credentials.
 | `GOOGLE_SHEETS_CREDENTIALS_B64` | Mismo JSON codificado en base64 (alternativa para PaaS) |
 | `GOOGLE_SHEETS_SPREADSHEET_ID` | ID del Google Sheet con la base de datos de pacientes |
 | `TELEGRAM_BOT_TOKEN` | Token del bot de Telegram (de @BotFather) |
-| `TELEGRAM_CHAT_ID_MEDICO` | Chat ID de Telegram del médico/técnico a notificar (fallback) |
+| `TELEGRAM_CHAT_ID_MEDICO` | Chat ID de Telegram del médico a notificar (fallback) |
 
 > Las credenciales se resuelven en orden: `GOOGLE_SHEETS_CREDENTIALS_JSON` → `GOOGLE_SHEETS_CREDENTIALS_B64` → archivo en `GOOGLE_SHEETS_CREDENTIALS_PATH`. En Streamlit Cloud, `frontend/app.py` mapea `st.secrets` a estas variables automáticamente.
 
@@ -238,7 +240,7 @@ En **Settings → Secrets and variables → Actions** del repo, agregar:
 | `GOOGLE_SHEETS_CREDENTIALS_B64` | JSON de la Service Account de Google codificado en **base64** | `base64 -i credentials.json -o creds.b64` (macOS) o `base64 credentials.json > creds.b64` (Linux); copiar el contenido |
 | `GOOGLE_SHEETS_SPREADSHEET_ID` | ID del Google Sheet de pacientes | Extraído de la URL del Sheet |
 | `TELEGRAM_BOT_TOKEN` | Token del bot de Telegram | Desde `@BotFather` |
-| `TELEGRAM_CHAT_ID_MEDICO` | Chat ID de Telegram del médico/técnico | Desde `@userinfobot` o el JSON de `getUpdates` |
+| `TELEGRAM_CHAT_ID_MEDICO` | Chat ID de Telegram del médico | Desde `@userinfobot` o el JSON de `getUpdates` |
 
 El scheduler reconstruye `credentials.json` desde el secret en base64 en cada ejecución, por lo que el archivo de credenciales **nunca** se sube al repositorio.
 
@@ -271,13 +273,15 @@ El dashboard lee los pacientes desde Google Sheets usando una Service Account. E
 
 ## Modelo de negocio
 
-**Freemium B2B ligero** (no vendemos al Estado directamente; vendemos a profesionales de salud que luego presionan hacia arriba):
+**Freemium B2B ligero** (no vendemos al Estado directamente; vendemos a profesionales de salud y operadores de micro-redes que luego presionan hacia arriba):
 
 | Plan | Precio | Incluye |
 |------|--------|---------|
 | **Gratis** | S/0/mes | 1 posta, hasta 50 pacientes, recordatorios por Telegram, Google Sheets |
-| **Pro** | S/49/mes | Hasta 3 postas, 500 pacientes, dashboard con métricas, reporte mensual para Diris |
-| **Micro-red** | S/199/mes | 10 postas, pacientes ilimitados, admin centralizado, onboarding personalizado |
+| **Pro** | S/49/mes | Hasta 3 postas (licencia multi-sede), 500 pacientes, dashboard con métricas, reporte mensual para Diris |
+| **Micro-red** | S/199/mes | 10 postas (licencia para operador de micro-red), pacientes ilimitados, admin centralizado, onboarding personalizado |
+
+> El plan Gratis es para un profesional individual con una posta. Los planes Pro y Micro-red son suscripciones multi-sede para operadores (ONG, micro-redes o profesionales con varias sedes) que gestionan varias postas a la vez.
 
 **Costo variable por usuario:** ~S/0 (Telegram gratis, Google Sheets gratis, GitHub Actions gratis). Margen de contribución cercano al 100 %.
 
@@ -289,7 +293,7 @@ El dashboard lee los pacientes desde Google Sheets usando una Service Account. E
 |-------|------|
 | **3 meses** | 3 postas activas, sistema estable con Telegram, primeros usuarios pagando (plan Pro) |
 | **6 meses** | 10 postas, agentes de voz con IA que llaman directamente a los pacientes, dashboard con predicción de abandono |
-| **12 meses** | 50 postas (1 micro-red), primer convenio institucional (ONG o municipalidad), integración con HIS del MINSA |
+| **12 meses** | 50 postas (1 micro-red), expansión a clínicas privadas con agentes de IA de voz para reservas y confirmaciones de citas, plataforma de métricas y reportes, primer convenio institucional (ONG o municipalidad) |
 
 ---
 
@@ -331,7 +335,7 @@ Carpeta [`docs/research/`](docs/research/) con 5 evidencias:
 
 | # | Evidencia | Tipo |
 |---|-----------|------|
-| 1 | [Entrevista con técnico de posta](docs/research/01_entrevista_tecnico_posta.md) | Entrevista |
+| 1 | [Entrevista con médico de posta](docs/research/01_entrevista_tecnico_posta.md) | Entrevista |
 | 2 | [Entrevista con médico de posta](docs/research/02_entrevista_medico_posta.md) | Entrevista |
 | 3 | [Observación de flujo en posta](docs/research/03_observacion_flujo_posta.md) | Observación de campo |
 | 4 | [Validación de métricas del MINSA](docs/research/04_validacion_metricas_minsa.md) | Investigación documental |
@@ -347,7 +351,7 @@ Carpeta [`docs/research/`](docs/research/) con 5 evidencias:
 - Universidad del Pacífico – Departamento de Economía
 - Docente: Alexander Quispe
 
-Construido con asistencia de Claude Code como co-founder técnico.
+Construido con asistencia de Claude Code como co-founder de ingeniería.
 
 ---
 
